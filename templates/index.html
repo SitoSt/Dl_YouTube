@@ -8,15 +8,29 @@
 </head>
 <body>
     <center>
-    {% if video %}
-        <h1>Instalando el video: {{video}}</h1>
-    {% else %}    
+
+        {% if resolutions %}
+        <form action="/download" method="POST">
+            <label for="lang">Elige resolución</label>
+            <select name="Resolución" id="lang">
+            {% for res in resolutions %}
+                {% if resolutions[res] == True %}
+                <option value={{ res }}>{{res}}</option>
+                {% endif %}
+            {% endfor %}
+            </select>
+            <button>Descargar</button>
+        </form>
+        {% else %}   
         <h1>Introduzca la Url:</h1>
-        <form action="/Url" method="POST">
+        <form action="/select" method="POST">
             <input type="url" name="Url" placeholder="Url">
             <button>Download</button>
         </form>
-    {% endif %}
+        {% endif %}
+        {% if title %}
+            <h1>descargando video: {{ title }}</h1>
+        {% endif %}
     </center>
 </body>
 </html>
