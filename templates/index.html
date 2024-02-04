@@ -1,36 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href={{ url_for('static', filename='main.css') }}>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="”theme-color”" content="”dark”" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
+
+    <link rel="stylesheet" href={{ url_for('static', filename='main.css' ) }}>
+
     <title>flask</title>
 </head>
-<body>
-    <center>
 
-        {% if resolutions %}
-        <form action="/download" method="POST">
-            <label for="lang">Elige resolución</label>
-            <select name="Resolución" id="lang">
-            {% for res in resolutions %}
-                {% if resolutions[res] == True %}
-                <option value={{ res }}>{{res}}</option>
+<body class="text-body">
+
+    <div class="container-fluid text-center g-5 bg-image">
+        <!-- barra de navegación -->
+        <nav class="navbar navbar-expand-lg fixed-top p-1 shadow">
+            <div class="container-fluid justify-content-between text-center">
+
+                <a class="col-2" href="#">
+                    <img class="rounded ms-4 img-ico float-start" src="../static/img/youtube.svg"
+                        style="height: 3.5rem; width: 3.5rem" />
+                </a>
+
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item me-2">
+                            <a class="nav-link head-link fs-5" href="#">Home</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link head-link fs-5" href="#">Features</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link head-link fs-5" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link head-link fs-5">Disabled</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <a class="head-link col-2 fs-5 me-4 d-flex justify-content-end align-items-center" href="">
+                    <img id="github" class="rounded img-ico me-2" src="../static/img/github.svg" alt=""
+                        style="height: 3.5rem; width: 3.5rem" />
+                    Git project
+                </a>
+            </div>
+        </nav>
+        <!-- fin barra de navegación -->
+
+        <div class="row justify-content-center align-items-center" style="height: 90vh">
+            <div class="col-6 solid-box">
+
+                <!-- Formulario -->
+                {% if url == null and downloaded == null %}
+                <form id="form-url" class="p-4" action="/select" method="POST">
+                    
+                    <label for="url" class="form-label fs-3 ps-1 col-12 text-basic text-start">
+                        Introduzca la Url del video que desea descargar:
+                    </label>
+                    <div class="input-group input-group-lg mb-3 border border-dark esquina">
+
+                        <input id="url" type="url" name="Url" class="form-control bg-transparent input-format border-0"
+                            aria-describedby="paste" required="true" placeholder="https://www.youtube.com/..." />
+
+                        <span class="input-group-text align-middle bg-btn-2 border-0" id="paste">
+                            <img src="../static/img/clipboard.svg" alt=""/>
+                        </span>
+
+                    </div>
+                    <!-- Input de la url -->
+
+                    <!-- Selector para formato de la descarga -->
+                    <select name="Formato">
+
+                        <option value="progresive" selected>
+                            Video+Audio(Mp4)
+                        </option>
+
+                        <option value="video">
+                            Solo video
+                        </option>
+
+                        <option value="audio">
+                            Solo audio
+                        </option>
+                    </select>
+                    <!-- Fin selector -->
+
+                    <!--  --> <!-- SUBMIT --> <!--  -->
+                    <button class="btn col-auto bg-btn text-format">
+                        Descargar
+                    </button>
+                </form>
+
+                {% elif url and formato and title %}
+
+                <h2>{{ title }}</h2>
+
+                <form id="form-resolution" class="p-4" action="/download" method="POST">
+                    {% if formato == 'progresive' %}
+                    <label for="prgresive-res" class="form-label fs-3 ps-1 col-12 text-basic text-start">
+                        Elija la resolucin de su descarga:
+                    </label>
+                    <select name="Progresive-res" id="prgresive-res">
+                        {% for res in resolutions %}
+                        {% if resolutions[res] %}
+                        <option value="{{ res }}">
+                            {{ res }}
+                        </option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+
+                    {% elif formato == 'video' %}
+                    <label for="video-res" class="form-label fs-3 ps-1 col-12 text-basic text-start">
+                        Elige calidad para la descarga:
+                    </label>
+                    <select name="Video-res" id="video-res">
+                        {% for res in resolutions %}
+                            {% if resolutions[res] %}
+                            <option value="{{ res }}">
+                                {{ res }}
+                            </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+
+                    {% elif formato == 'audio' %}
+
+                    <label for="audio-res" class="form-label fs-3 ps-1 col-12 text-basic text-start">
+                        Elige calidad para la descarga:
+                    </label>
+                    <select name="Audio-res" id="audio-res">
+                        {% for res in resolutions %}
+                        {% if resolutions[res] %}
+                        <option value="{{ res }}">
+                            {{ res }}
+                        </option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+
+                    {% else %}
+
+                    <h1>No hay ningun formato de descarga elegido<h1>
+                    {% endif %}
+                    <button class="btn col-auto bg-btn text-format">
+                        Descargar
+                    </button>
+
+                </form> 
+
+                {% elif downloaded %}
+
+                <h1>El video {{ title }} se ha descargado con exito!!</h1>
+
+                <a href="/">Vuelve a la pagina principal para seguir descargando</a>
+
                 {% endif %}
-            {% endfor %}
-            </select>
-            <button>Descargar</button>
-        </form>
-        {% else %}   
-        <h1>Introduzca la Url:</h1>
-        <form action="/select" method="POST">
-            <input type="url" name="Url" placeholder="Url">
-            <button>Download</button>
-        </form>
-        {% endif %}
-        {% if title %}
-            <h1>descargando video: {{ title }}</h1>
-        {% endif %}
-    </center>
+            </div>
+        </div>
+
+        <!-- termina el formulario y uso cards enlazadas a la navbar para mostrar la info de la web -->
+
+        <div class="card text-bg-dark border-secondary m-4" style="width: 12rem">
+            <img src="static/cielo-mar-menor.jpg" class="card-img-top" alt="joder!! y la imagén??!!" />
+            <div class="card-body">
+                <p class="card-text text-body">
+                    Una forma segura y rapida de descargar todos los formatos de YouTube
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

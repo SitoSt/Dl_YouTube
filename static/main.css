@@ -1,3 +1,180 @@
-*{
-    background-color: rgb(40, 46, 68);
+:root {
+    color-scheme: dark;
+
+    --color-blue: 19, 64, 116;
+    --color-purple: 13, 28, 42;
+    --color-red: 42, 13, 28;
+    --color-green: 28, 42, 13;
+
+    --bs-gray-100: 248, 249, 250;
+    --bs-gray-200: 233, 236, 239;
+    --bs-gray-300: 222, 226, 230;
+    --bs-gray-400: 206, 212, 218;
+    --bs-gray-500: 173, 181, 189;
+    --bs-gray-600: 108, 117, 125;
+    --bs-gray-700: 73, 80, 87;
+    --bs-gray-800: 52, 58, 64;
+    --bs-gray-900: 33, 37, 41;
+
+    --blur: 2rem;
+
 }
+
+@font-face {
+    font-family: system-ui, -apple-system;
+    src: url("./img/Avenir.ttc");
+}
+/* Preferencias de sistema */
+
+/* Preparando el body y el background */
+body {
+    --bs-body-color-rgb: 222, 226, 230;
+    --bs-body-bg: #212529;
+    --bs-body-indigo: #100042;
+    background-color: var(--bs-body-bg);
+}
+
+
+.bg-image {
+    background-image: url('./img/monterrey.jpg');
+    height: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+/* Fin body y Background */
+
+/* Estilo barra de nabegacion */
+nav {
+    background-color: rgba(var(--bs-gray-900), 0.55);
+    -webkit-backdrop-filter: blur(3rem);
+    backdrop-filter: blur(3rem);
+}
+
+.head-link {
+    font-family: system-ui;
+    color: rgba(var(--bs-gray-300), 0.7);
+    text-shadow: 1px 1px 0.3rem rgba(var(--bs-gray-400), 0.6);
+}
+
+.head-link:hover {
+    transition: color;
+    transition-duration: 0.2s;
+    color: rgba(var(--bs-gray-100), 0.85);
+}
+
+.img-ico:hover {
+    transition: transform;
+    transition-duration: 0.2s;
+    transform: scale(1.161, 1.161);
+}
+/* Fin barra de navegación */
+
+/* ------------------------------------ */
+.text-format{
+    font-family: system-ui;
+    color: rgba(var(--bs-gray-200), 0.7);
+    text-shadow: 1px 1px 0.2rem rgba(var(--bs-gray-300), 0.35);
+}
+
+.text-basic {
+    font-family: system-ui;
+    color: rgba(var(--bs-gray-200), 0.8);
+    text-shadow: 1px 1px 0.1rem rgba(var(--bs-gray-300), 0.35);
+}
+
+.text-2 {
+    font-family: system-ui;
+    color: rgb(var(--bs-gray-200));
+}
+
+.solid-box {
+    background-color: rgba(var(--bs-gray-800), 0.5);
+    -webkit-backdrop-filter: blur(var(--blur));
+    backdrop-filter: blur(var(--blur));
+    border-radius: 2vh;
+
+    box-shadow: 0px 2px 1rem 2px rgba(var(--bs-gray-500), 0.2);
+}
+
+/* ------ */
+/* 26, 26, 87 */
+
+.bg-btn {
+    background-color: rgba(50, 86, 37, 0.8);
+    color: rgb(var(--bs-gray-400));
+    -webkit-backdrop-filter: blur(0.5rem);
+    backdrop-filter: blur(0.5rem);
+}
+
+.bg-btn:hover {
+    transition: background-color;
+    transition-duration: 0.3s;
+    background-color: rgba(var(--bs-gray-900), 0.4);
+    -webkit-backdrop-filter: blur(1rem);
+    backdrop-filter: blur(1rem);
+}
+
+
+.bg-btn-2 {
+    background-color: rgba(var(--bs-gray-900), 0.5);
+    color: rgb(var(--bs-gray-400));
+    -webkit-backdrop-filter: blur(0.5rem);
+    backdrop-filter: blur(0.5rem);
+}
+
+.bg-btn-3 {
+    color: rgb(var(--bs-gray-400));
+    -webkit-backdrop-filter: blur(0.5rem);
+    backdrop-filter: blur(0.5rem);
+}
+
+.nav-link.bg-btn-3:hover {
+    color: rgb(var(--bs-gray-400));
+    transition: background-color;
+    transition-duration: 0.3s;
+    background-color: rgba(var(--bs-gray-900), 0.3);
+    border: 1px rgb(var(--bs-gray-900)) solid;
+}
+
+.nav-tabs .nav-link.active {
+    transition: backround-color;
+    transition-duration: 0.5s;
+    color: rgb(var(--bs-gray-400));
+    background-color: rgba(var(--bs-gray-900), 0.5);
+    border: 1.5px rgb(var(--bs-gray-700)) solid;
+    border-bottom: 0;
+}
+/* ------ */
+
+.esquina {
+    border-radius: 9px;
+}
+
+/* inputs */
+
+
+.input-format {
+    outline: none;
+    color: rgb(var(--bs-gray-200));
+
+}
+
+.input-format:focus-visible {
+    outline: none;
+
+    color: rgb(var(--bs-gray-200));
+}
+
+.input-format::placeholder {
+    color: rgb(var(--bs-gray-200));
+}
+
+.select {
+    outline: none;
+/*     
+    background-color: rgba(var(--bs-gray-800), 0.2);
+    border: 1.5px rgb(var(--bs-gray-700)) solid; */
+	font-size: 1em;
+	font-family: system-ui;
+}
+/* inputs */

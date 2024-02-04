@@ -3,8 +3,10 @@ env/
 
 __pycache__/
 *.py[cod]
-
 .pytest_cache/
 
 descargas/
+static/img/
+src/pruebas.py
+
 .DS_Store
