@@ -4,4 +4,4 @@
 
 *Inicializar la app*
 
- - flask --app index.py run
+ - flask --app index.py run --debug

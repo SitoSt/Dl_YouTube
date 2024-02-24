@@ -12,42 +12,54 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
         </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href={{ url_for('static', filename='main.css' ) }}>
+    <link rel="stylesheet" href={{ url_for('static', filename='animations.css' ) }}>
 
     <title>flask</title>
 </head>
 
 <body class="text-body">
 
-    <div class="container-fluid text-center g-5 bg-image">
+    <div class="container-fluid text-center g-5">
         <!-- barra de navegación -->
-        <nav class="navbar navbar-expand-lg fixed-top p-1 shadow">
-            <div class="container-fluid justify-content-between text-center">
+        <nav class="navbar navbar-expand-lg fixed-top p-1 shadow rounded">
 
-                <a class="col-2" href="#">
-                    <img class="rounded ms-4 img-ico float-start" src="../static/img/youtube.svg"
-                        style="height: 3.5rem; width: 3.5rem" />
-                </a>
+            <div class="container-fluid justify-content-center text-center">
 
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <div class="collapse navbar-collapse col-1" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item me-2">
-                            <a class="nav-link head-link fs-5" href="#">Home</a>
+                            <a class="nav-link head-link fs-5" href="#como_funciona">¿Como funiciona?</a>
                         </li>
                         <li class="nav-item me-2">
-                            <a class="nav-link head-link fs-5" href="#">Features</a>
-                        </li>
-                        <li class="nav-item me-2">
-                            <a class="nav-link head-link fs-5" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item me-2">
-                            <a class="nav-link head-link fs-5">Disabled</a>
+                            <a class="nav-link head-link fs-5" href="#">información</a>
                         </li>
                     </ul>
                 </div>
 
-                <a class="head-link col-2 fs-5 me-4 d-flex justify-content-end align-items-center" href="">
+
+                <div class="col-7">
+                    <form id="form-url" class="row align-items-center justify-content-center" action="/select"
+                        method="POST">
+
+                        <input id="form-url" name="Url" class="col-sm-10 form-control fs-6 m-0  text-white text-start"
+                            type="url" aria-describedby="paste" required="true"
+                            placeholder="Introduzca la url de un video" />
+                        <!--
+                        <span class="input-group-text align-middle bg-btn-2 border-0" id="paste">
+                            <img src="../static/img/clipboard.svg" alt=""/>
+                        </span> -->
+
+                        <button class="btn col-auto text-white m-0 ms-2">
+                            Buscar
+                        </button>
+
+                    </form>
+                </div>
+
+                <a class="nav-link head-link col-2 fs-5 me-4 d-flex justify-content-end align-items-center" href="">
                     <img id="github" class="rounded img-ico me-2" src="../static/img/github.svg" alt=""
                         style="height: 3.5rem; width: 3.5rem" />
                     Git project
@@ -55,131 +67,163 @@
             </div>
         </nav>
         <!-- fin barra de navegación -->
+        {% if title and thumbnail_url and Resolutions and Bibrates %}
 
-        <div class="row justify-content-center align-items-center" style="height: 90vh">
-            <div class="col-6 solid-box">
+        <div id="video_preferences" class="row justify-content-center align-items-center" style="height: 90vh">
+            
+            <div class="col-8 solid-box shadow p-4 ps-1 pe-1" id="main_bx">
 
-                <!-- Formulario -->
-                {% if url == null and downloaded == null %}
-                <form id="form-url" class="p-4" action="/select" method="POST">
+                <div class="row align-items-center justify-content-center">
+
+                    <img class="col-5 p-0 thumbnail" src="{{ thumbnail_url }}" alt="thumbnail">     
+
+                    <div class="col-6 ms-4 p-0">
+                        <p class="text-white fs-5 m-3 row" style="display: inline;"> El video:
+                        <strong style="color: antiquewhite;">{{title}}</strong>
+                        esta listo para descargarse, elige una resolucion</p>
+
+                        <form class="m-3 row" id="resolution_form" action="/download" method="POST">
+
+                            <input id="format_tracker" name="format_tracker" type="text" hidden>
                     
-                    <label for="url" class="form-label fs-3 ps-1 col-12 text-basic text-start">
-                        Introduzca la Url del video que desea descargar:
-                    </label>
-                    <div class="input-group input-group-lg mb-3 border border-dark esquina">
+                            <ul class="nav nav-tabs col-12 align-items-center" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
 
-                        <input id="url" type="url" name="Url" class="form-control bg-transparent input-format border-0"
-                            aria-describedby="paste" required="true" placeholder="https://www.youtube.com/..." />
+                                    <button class="nav-link" id="progresive_tab" data-bs-toggle="tab"
+                                        data-bs-target="#progresive_res_pane" type="button" role="tab">
+                                        Video + Audio
+                                    </button>
 
-                        <span class="input-group-text align-middle bg-btn-2 border-0" id="paste">
-                            <img src="../static/img/clipboard.svg" alt=""/>
-                        </span>
+                                </li>
+                                <li class="nav-item" role="presentation">
 
+                                    <button class="nav-link" id="video_tab" data-bs-toggle="tab"
+                                        data-bs-target="#video_res_pane" type="button" role="tab">
+                                        Solo Video
+                                    </button>
+
+                                </li>
+                                <li class="nav-item" role="presentation">
+
+                                    <button class="nav-link" id="audio_tab" data-bs-toggle="tab"
+                                        data-bs-target="#audio_res_pane" type="button" role="tab">
+                                        Solo Audio
+                                    </button>
+
+                                </li>
+
+                                <select class="form-select form-select-md ms-4 res" name="progresive_res" id="progresive_res" hidden>
+                                    <option value="360p" class="fs-1">360p</option>
+                                    <option value="720p">720p</option>
+                                </select>
+
+                                <select class="form-select form-select-md ms-4 res" name="video_res" id="video_res" hidden>
+                                    {% for res in Resolutions %}
+                                    {% if Resolutions[res] %}
+                                    <option value="{{ res }}" class="fs-2">{{ res }}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+
+                                <select class="form-select form-select-md ms-4 res" name="audio_res" id="audio_res" hidden>
+                                    {% for abr in Bibrates %}
+                                    {% if Bibrates[abr] %}
+                                    <option value="{{ abr }}">{{ abr }}</option>
+                                    {% endif %}
+                                    {% endfor %} 
+                                </select>
+                            </ul>
+
+                            <button class="btn col-auto m-2 bg-primary text-white">
+                                Descargar
+                            </button>
+
+                        </form>
                     </div>
-                    <!-- Input de la url -->
-
-                    <!-- Selector para formato de la descarga -->
-                    <select name="Formato">
-
-                        <option value="progresive" selected>
-                            Video+Audio(Mp4)
-                        </option>
-
-                        <option value="video">
-                            Solo video
-                        </option>
-
-                        <option value="audio">
-                            Solo audio
-                        </option>
-                    </select>
-                    <!-- Fin selector -->
-
-                    <!--  --> <!-- SUBMIT --> <!--  -->
-                    <button class="btn col-auto bg-btn text-format">
-                        Descargar
-                    </button>
-                </form>
-
-                {% elif url and formato and title %}
-
-                <h2>{{ title }}</h2>
-
-                <form id="form-resolution" class="p-4" action="/download" method="POST">
-                    {% if formato == 'progresive' %}
-                    <label for="prgresive-res" class="form-label fs-3 ps-1 col-12 text-basic text-start">
-                        Elija la resolucin de su descarga:
-                    </label>
-                    <select name="Progresive-res" id="prgresive-res">
-                        {% for res in resolutions %}
-                        {% if resolutions[res] %}
-                        <option value="{{ res }}">
-                            {{ res }}
-                        </option>
-                        {% endif %}
-                        {% endfor %}
-                    </select>
-
-                    {% elif formato == 'video' %}
-                    <label for="video-res" class="form-label fs-3 ps-1 col-12 text-basic text-start">
-                        Elige calidad para la descarga:
-                    </label>
-                    <select name="Video-res" id="video-res">
-                        {% for res in resolutions %}
-                            {% if resolutions[res] %}
-                            <option value="{{ res }}">
-                                {{ res }}
-                            </option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-
-                    {% elif formato == 'audio' %}
-
-                    <label for="audio-res" class="form-label fs-3 ps-1 col-12 text-basic text-start">
-                        Elige calidad para la descarga:
-                    </label>
-                    <select name="Audio-res" id="audio-res">
-                        {% for res in resolutions %}
-                        {% if resolutions[res] %}
-                        <option value="{{ res }}">
-                            {{ res }}
-                        </option>
-                        {% endif %}
-                        {% endfor %}
-                    </select>
-
-                    {% else %}
-
-                    <h1>No hay ningun formato de descarga elegido<h1>
-                    {% endif %}
-                    <button class="btn col-auto bg-btn text-format">
-                        Descargar
-                    </button>
-
-                </form> 
-
-                {% elif downloaded %}
-
-                <h1>El video {{ title }} se ha descargado con exito!!</h1>
-
-                <a href="/">Vuelve a la pagina principal para seguir descargando</a>
-
-                {% endif %}
+                </div>
+            </div>
+            
+        </div>
+        {% endif %}
+        
+        <div id="como_funciona" class="row justify-content-center align-items-center" style="height: 90vh;">
+            <div class="col-4" style="height: 50%;">
+                <div class="row bg-gradient1 p-3 align-items-center justify-content-center" style="height: 100%;">
+                    <p class="fs-2 m-0">Esta web utiliza python para buscar y descargar videos de YouTube</p>
+                </div>
+            </div>
+            
+            <div class="col-6 ps-3" style="height: 50%;">
+                <div class="col-12 bg-gradient2 mb-2 overflow-hidden" style="height: 50%;">
+                    <div class="header p-2 shadow-sm">
+                        <h2 class="m-0">Seguridad</h2>
+                    </div>
+                    <div class="">
+                        <p class="m-2 fs-2"> hola</p>
+                    </div>
+                </div>
+                <div class="hstack col-12" style="height: 50%;">
+                    <div class="col-6 p-2 ps-0" style="height: 100%;">
+                        <div class="row bg-gradient3 justify-content-center align-items-center m-0" style="height: 100%;">
+                            <p class="m-0 fs-3" >todas las opciones de descarga y mas</p>
+                        </div>                        
+                    </div>
+                    <div class="col-6 p-2 pe-0" style="height: 100%;">
+                        <div class="row bg-gradient4 justify-content-center align-items-center m-0" style="height: 100%;">
+                            <p class="m-0 fs-3">la mejor estetica y calidad de usuario</p>
+                        </div>
+                    </div>
+            </div>
             </div>
         </div>
 
-        <!-- termina el formulario y uso cards enlazadas a la navbar para mostrar la info de la web -->
+        <div id="info_usuario" class="row justify-content-center align-items-center" style="height: 90vh;">
+            <div class="row justify-content-center align-items-center" style="height: 65%">
 
-        <div class="card text-bg-dark border-secondary m-4" style="width: 12rem">
-            <img src="static/cielo-mar-menor.jpg" class="card-img-top" alt="joder!! y la imagén??!!" />
-            <div class="card-body">
-                <p class="card-text text-body">
-                    Una forma segura y rapida de descargar todos los formatos de YouTube
-                </p>
+                <div class="col-3 me-1" style="height: 60%;">
+                    <div class="row bg-gradient1 m-0 p-2 justify-content-center" style="height: 100%;">
+                        <div class="col-12 p-0 pt-2">
+                            <h2 class="mb-3">Video + Audio</h2>
+                            <hr class="m-0">
+                        </div>
+                        <p>Lorem, ipsum dolor sit amet consectetur ñfahfkjsdh jkfha fsd fdbiu</p>
+                    </div>
+                </div>
+
+                <div class="col-3 ms-1 me-1" style="height: 60%;">
+                    <div class="row bg-gradient2 m-0 p-2 justify-content-center" style="height: 100%;">
+                        <div class="col-12 p-0 pt-2">
+                            <h2 class="mb-3">Video</h2>
+                            <hr class="m-0">
+                        </div>
+                        <p>Lorem, ipsum dolor sit amet consectetur ñfahfkjsdh jkfha fsd fdbiu</p>
+                    </div>
+                </div>
+
+                <div class="col-3 ms-1" style="height: 60%;">
+                    <div class="row bg-gradient3 m-0 p-2 justify-content-center" style="height: 100%;">
+                        <div class="col-12 p-0 pt-2">
+                            <h2 class="mb-3">Audio</h2>
+                            <hr class="m-0">
+                        </div>
+                        <p>Lorem, ipsum dolor sit amet consectetur ñfahfkjsdh jkfha fsd fdbiu</p>
+                    </div>
+                </div>
+
+                <div class="col-7 mt-3" style="height: 35%;">
+                    <div class="row bg-gradient3 m-0 p-2 justify-content-center" style="height: 100%;">
+                        <div class="col-12 p-0 pt-2">
+                            <h2 class="mb-3">Una forma mas pro</h2>
+                            <hr class="m-0 mt-1">
+                        </div>
+                        <p>Lorem, ipsum dolor sit amet consectetur ñfahfkjsdh jkfha fsd fdbiu</p>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <script src="../static/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>

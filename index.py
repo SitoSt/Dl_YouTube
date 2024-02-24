@@ -1,12 +1,13 @@
 from flask import Flask, stream_template, request
 from pytube import YouTube
-from src.resolutions import Cap_resolutions
+from src.video_information import Get_resolutions, Get_info
 from src.download import Descargar_video
 
 app = Flask(__name__)
 
 url = ''
-formato = ''
+title = ''
+thumbnail_url = ''
 
 @app.route('/')
 def index():
@@ -16,37 +17,38 @@ def index():
 def Select():
     # 1º Cogemos la url del form
     global url
-    global formato
-    global yt
+    global title
+    global thumbnail_url
 
     url = request.form['Url']
-    formato = request.form['Formato']
 
     # Accedemos al video y lo guardamos en la variable yt
     yt = YouTube(url)
-    title = yt.title
+    
+    # Invocamos las funciones para acceder al titulo, la miniatura y las resoluciones del video
+    title, thumbnail_url = Get_info(url)
+    Resolutions, Bibrates = Get_resolutions(url)
 
-    # Invocamos la función para ver las resoluciones del video
-    resolutions = Cap_resolutions(url, formato)
+    print(thumbnail_url)
 
-    return stream_template('index.html', url=url, formato=formato, title=title, resolutions=resolutions)
+    return stream_template('index.html', title=title, thumbnail_url=thumbnail_url,  Resolutions=Resolutions, Bibrates=Bibrates)
 
 
 @app.route('/download', methods = ['POST'])
 def Download():
-    res = ''
+    formato = request.form['format_tracker']
+    
+    print(formato)
 
     if formato == 'progresive':
-        res = request.form['Progresive-res']
+        res = request.form['progresive_res']
     elif formato == 'video':
-        res = request.form['Video-res']
+        res = request.form['video_res']
     elif formato == 'audio':
-        res = request.form['Audio-res']
+        res = request.form['audio_res']
     else:
         print('ERROR: no hay formato para descargar')
 
     Descargar_video(res, url, formato, '')
 
-    title = YouTube(url).title
-
-    return stream_template('index.html', title = title, downloaded=True)
+    return stream_template('index.html', title = title, thumbnail_url=thumbnail_url, downloaded=True)
