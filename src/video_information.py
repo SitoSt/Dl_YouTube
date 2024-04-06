@@ -18,7 +18,7 @@ Resoluciones = {
     '1440p': False,
     '2160p': False
 }
-Bibrates = {
+Vibrates = {
     '48kbps': False, #mp4a.40.5
     '50kbps': False, #opus
     '70kbps': False, #opus
@@ -33,11 +33,11 @@ def Get_resolutions(url):
         if streams.filter(only_video=True, resolution=res):
             Resoluciones[res] = True
 
-    for n in Bibrates:
+    for n in Vibrates:
         if streams.filter(only_audio=True, abr=n):
-            Bibrates[n] = True
+            Vibrates[n] = True
     
-    return Resoluciones, Bibrates
+    return Resoluciones, Vibrates
 
 def Get_info (url):
 

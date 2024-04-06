@@ -1,40 +1,54 @@
-
 window.onload = function () {
-    console.log('cargando...')
+    console.log('cargando...');
 }
+
+const video_area = document.getElementById("video_preferences");
 
 const format = document.getElementById("format_tracker");
 
-const btn_progrsive = document.getElementById("progresive_tab");
+const btn_progressive = document.getElementById("progressive_tab");
 const btn_video = document.getElementById("video_tab");
 const btn_audio = document.getElementById("audio_tab");
 
-const progresive_select = document.getElementById("progresive_res")
-const video_select = document.getElementById("video_res")
-const audio_select = document.getElementById("audio_res")
+const progressive_select = document.getElementById("progressive_res");
+const video_select = document.getElementById("video_res");
+const audio_select = document.getElementById("audio_res");
 
-// child_process: Módulo que nos permite generar subprocesos.
-// spawn: Método que genera un subproceso
+const url_input = document.getElementById("form-url");
 
+const link_descarga = document.getElementById("link_descarga");
+const retry_msg = document.getElementById("retry_msg");
+const close_btn = document.getElementById("close_btn");
 
-
-btn_progrsive.addEventListener('click', function() {
-    format.value = "progresive"
-    progresive_select.hidden = false
-    video_select.hidden = true
-    audio_select.hidden = true
-})
+btn_progressive.addEventListener('click', function () {
+    format.value = "progressive";
+    progressive_select.hidden = false;
+    video_select.hidden = true;
+    audio_select.hidden = true;
+});
 
 btn_video.addEventListener('click', function(){
-    format.value = "video"
-    progresive_select.hidden = true
-    video_select.hidden = false
-    audio_select.hidden = true
-})
+    format.value = "video";
+    progressive_select.hidden = true;
+    video_select.hidden = false;
+    audio_select.hidden = true;
+});
 
 btn_audio.addEventListener('click', function() {
-    format.value = "audio"
-    progresive_select.hidden = true
-    video_select.hidden = true
-    audio_select.hidden = false
-})
+    format.value = "audio";
+    progressive_select.hidden = true;
+    video_select.hidden = true;
+    audio_select.hidden = false;
+});
+
+
+function handleDownload() {
+    retry_msg.hidden = false;
+    link_descarga.textContent = 'Volver a descargar';
+    close_btn.hidden = false;
+}
+
+function close() {
+    video_area.hidden = true;
+    close.log('penes');
+}
