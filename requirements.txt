@@ -13,3 +13,5 @@ setuptools==69.0.3
 virtualenv==20.25.0
 Werkzeug==3.0.1
 wheel==0.42.0
+gunicorn==21.2.0
+packaging==24.0
