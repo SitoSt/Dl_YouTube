@@ -1,12 +1,15 @@
 env/
 .env
 
+.vscode
+
 __pycache__/
 *.py[cod]
 .pytest_cache/
 
-descargas/
+static/downloads
 static/img/
 src/pruebas.py
 
 .DS_Store
+.vercel
