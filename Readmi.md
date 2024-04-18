@@ -1,7 +1,8 @@
 *Parra iniciar el entorno virtual:*
 
- - source env/bin/activate
+- source env/bin/activate
 
 *Inicializar la app*
 
- - flask --app index.py run --debug
+- flask --app index.py run --debug
+- gunicorn index:app

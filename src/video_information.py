@@ -26,23 +26,31 @@ Vibrates = {
     '160kbps': False #opus
 }
 
-def Get_resolutions(url):
-    streams = YouTube(url).streams
+def Get_info(url):
+    try:
+        yt = YouTube(url)
+        streams = yt.streams
+        title = yt.title
+        thumbnail_url = yt.thumbnail_url
 
-    for res in Resoluciones:
-        if streams.filter(only_video=True, resolution=res):
-            Resoluciones[res] = True
+        for res in Resoluciones:
+            if streams.filter(only_video=True, resolution=res):
+                Resoluciones[res] = True
 
-    for n in Vibrates:
-        if streams.filter(only_audio=True, abr=n):
-            Vibrates[n] = True
+        for n in Vibrates:
+            if streams.filter(only_audio=True, abr=n):
+                Vibrates[n] = True
+        
+        video_info = {
+            'title': title,
+            'thumbnail': thumbnail_url,
+            'resolutions': Resoluciones,
+            'vibrates': Vibrates
+        }
+
+        return video_info
     
-    return Resoluciones, Vibrates
+    except Exception as e:
+        print(f'No se ha podido acceder a los datos del video!! {e}')
+        return {'err_msg': 'no se ha podido acceder al video'}
 
-def Get_info (url):
-
-    yt = YouTube(url)
-    title = yt.title
-    thumbnail_url = yt.thumbnail_url
-
-    return title, thumbnail_url

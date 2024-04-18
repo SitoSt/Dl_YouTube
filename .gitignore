@@ -7,8 +7,6 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 
-static/downloads
-static/img/
 src/pruebas.py
 
 .DS_Store

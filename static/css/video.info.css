@@ -1,0 +1,161 @@
+.container-info {
+    display: none;
+}
+
+.container-res form {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.format-tabs {
+    display: flex;
+    position: relative;
+    width: fit-content;
+    padding: 10px;
+
+    background-color: var(--primary-color);
+    backdrop-filter: blur(2rem);
+    -webkit-backdrop-filter: blur(2rem);
+
+    border-radius: 99px;
+}
+
+[role='tab'] {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    height: 45px;
+    width: 150px;
+
+    border-radius: 99px;
+
+    color: var(--text-secondary-color);
+    font-size: 1.33rem;
+    font-weight: 500;
+    text-align: center;
+
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.15s ease-in;
+}
+
+input[type="radio"][id="progressive-tab"] {
+    &:checked {
+        &~.glider {
+            transform: translateX(0);
+        }
+
+        &+label {
+            color: var(--text-accent-color);
+        }
+    }
+}
+
+input[type="radio"][id="audio-tab"] {
+    &:checked {
+        &~.glider {
+            transform: translateX(100%);
+        }
+
+        &+label {
+            color: var(--text-accent-color);
+        }
+    }
+}
+
+input[type="radio"][id="video-tab"] {
+    &:checked {
+        &~.glider {
+            transform: translateX(200%);
+        }
+
+        &+label {
+            color: var(--text-accent-color);
+        }
+    }
+}
+
+
+.glider {
+    position: absolute;
+    display: flex;
+    height: 45px;
+    width: 150px;
+    background-color: var(--accent-color);
+    z-index: 1;
+    border-radius: 99px;
+    transition: 0.25s ease-out;
+}
+
+/* -------------------------------------------- */
+
+[role="tabpanel"] {
+    position: relative;
+    margin-top: 30px;
+
+    width: 40%;
+}
+
+
+.res-select select {
+    width: 100%;
+    padding: 7px 15px;
+
+    background: var(--accent-color-2);
+    backdrop-filter: blur(2rem);
+    -webkit-backdrop-filter: blur(2rem);
+
+    border: 0;
+    border-radius: 10px;
+    outline: 0;
+
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+
+    cursor: pointer;
+    transition: all 0.17s ease;
+    appearance: none;
+}
+
+.res-select select:hover {
+    background: var(--accent-color);
+}
+
+.res-select i {
+    position: absolute;
+    right: 20px;
+    top: calc(50% - 13px);
+    width: 16px;
+    height: 16px;
+    display: block;
+    border-left: 4px solid var(--text-accent-color);
+    border-bottom: 4px solid var(--text-accent-color);
+    transform: rotate(-45deg);
+    /* Giramos el cuadrado */
+    transition: all 0.25s ease;
+}
+
+.res-select:hover i {
+    margin-top: 3px;
+}
+
+.btn2 {
+    margin-top: 2rem;
+    padding: 10px;
+    padding-inline: 10px;
+
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 15px;
+
+    color: var(--text-color);
+    font-size: 1.5rem;
+    text-align: center;
+}

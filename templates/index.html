@@ -1,242 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="”theme-color”" content="”dark”" />
+  <meta name="">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-          crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link rel="stylesheet" href={{ url_for('static', filename='css/main.css' ) }}>
+  <link rel="stylesheet" href={{ url_for('static', filename='css/video.css' ) }}>
+  <link rel="stylesheet" href={{ url_for('static', filename='css/video.info.css' ) }}>
+  <link rel="stylesheet" href={{ url_for('static', filename='css/header.css' ) }}>
+  <link rel="stylesheet" href={{ url_for('static', filename='css/info.css' ) }}>
+  <link rel="stylesheet" href={{ url_for('static', filename='css/footer.css' ) }}>
 
-  <link rel="stylesheet" href={{ url_for('static', filename='main.css' ) }}>
-  <link rel="stylesheet" href={{ url_for('static', filename='animations.css' ) }}>
-
-  <title>flask</title>
+  <title>Dl YouTube</title>
 </head>
 
-<body class="text-body">
-  <div class="container-fluid text-center g-5">
-    <!-- barra de navegación -->
-    <nav class="navbar navbar-expand-lg fixed-top p-1 shadow rounded">
-      <div class="container-fluid justify-content-center text-center">
-        <div class="collapse navbar-collapse col-1" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item me-2">
-              <a class="nav-link head-link fs-5" href="#como_funciona">¿Como funciona?</a>
-            </li>
-            <li>
-              <a class="nav-link head-link fs-5" href="#mas">mas</a>
-            </li>
-          </ul>
-        </div>
+<body>
+  <main>
+    <header>
+      <nav>
+        <ul class="nav-bar"> 
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Uso">Información de Uso</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Seguridad">Seguridad</a>
+          </li>
+          <li class="nav-item"> 
+            <a class="nav-link" href="https://github.com/SitoSt/Dw_YouTube_1.0">
+              <img class="github" src={{ url_for('static', filename='img/github.svg') }} alt="Proyecto de GitHub"/>
+              Git project
+            </a>
+          </li>
+        </ul>
 
-        <div class="col-7">
-          <form id="form-url" class="row align-items-center justify-content-center" action="/select" method="POST">
-            <input id="form-url" name="Url" class="col-sm-10 form-control fs-6 m-0 text-white text-start" type="url"
-                   aria-describedby="paste" required="true" placeholder="Introduzca la url de un video" />
-            <!--
-                        <span class="input-group-text align-middle bg-btn-2 border-0" id="paste">
-                            <img src="../static/img/clipboard.svg" alt=""/>
-                        </span> -->
+      </nav>
+    </header>
+    
+    <section id="video">
+      <div class="container-url">
+        <form id="form-url">
+          <input id="url" class="shadow" name="Url" type="url" ria-describedby="paste" required="true" placeholder="Introduzca la url de un video" />
+          <label id="paste" for="url">
+            <button type="button" onclick="paste();">
+              <img src={{ url_for('static', filename='img/clipboard.svg') }} alt="Pegas del portapapeles"/>
+            </button>
+          </label>
 
-            <button class="btn col-auto text-white m-0 ms-2">Buscar</button>
+          <button type="submit" class="btn shadow">Buscar</button>
+        </form>
+      </div>
+
+      <div class="container-info" id="container-info">
+
+        <img class="thumbnail shadow" id="thumbnail" src="" alt="thumbnail" />
+        <div class="container-user-info">
+
+        <h1 id="title" class="shadow"></h1>
+        <div class="container-res" id="container-res">
+          <form id="form-preferences">
+            <div class="format-tabs shadow" role="tablist" aria-label="Format Tabs" name="format_tabs">
+
+              <input id="progressive-tab" name="progressive_tab" type="radio" 
+                aria-labelledby="progressive-lbl" hidden checked/>
+              <label id="progressive-lbl" class="format-tab"
+                role="tab" aria-selected="true" tabindex="0"
+                aria-controls="progressive-select" for="progressive-tab">
+
+                Video y Audio
+              </label>
+                
+
+              <input type="radio" id="audio-tab" name="audio_tab"
+                aria-labelledby="audio-lbl" hidden/>
+              <label id="audio-lbl" class="format-tab" 
+                role="tab" aria-selected="false" tabindex="0"
+                aria-controls="audio-select" for="audio-tab">
+      
+                Solo Audio
+              </label>
+              
+
+              <input type="radio" id="video-tab" name="video_tab" 
+                aria-labelledby="video-lbl" hidden/>
+              <label id="video-lbl" class="format-tab" 
+                role="tab" aria-selected="false" tabindex="0"
+                aria-controls="video-select" for="video-tab">
+                
+                Solo Video
+              </label>
+
+
+              <span class="glider"></span>
+            </div>
+
+            <div class="res-select" id="progressive-select"
+              role="tabpanel" tabindex="0" aria-labelledby="progressive-tab">
+
+              <select name="progressive_res" class="res-selection shadow">
+
+                <option value="360p" class="res">360p</option>
+                <option value="720p" class="res">720p</option>
+              </select>
+              <i></i>
+            </div>
+
+            <div class="res-select" id="audio-select" 
+              role="tabpanel" tabindex="0" aria-labelledby="audio-tab" hidden>
+
+              <select name="audio_res" class="res-selection shadow">
+              </select>
+              <i></i>
+            </div>
+
+            <div class="res-select" id="video-select" 
+              role="tabpanel" tabindex="0" aria-labelledby="video-tab" hidden>
+
+              <select name="video_res" class="res-selection shadow">
+              </select>
+              <i></i>
+            </div>
+
+            <button type="submit" class="btn2 shadow">Descargar</button>
           </form>
         </div>
 
-        <a class="nav-link head-link col-2 fs-5 me-4 d-flex justify-content-end align-items-center" href="">
-          <img id="github" class="rounded img-ico me-2" src="../static/img/github.svg" alt=""
-               style="height: 3.5rem; width: 3.5rem" />
-          Git project
-        </a>
-      </div>
-    </nav>
-    <!-- fin barra de navegación -->
-    {% if title and thumbnail_url and Resolutions and Vibrates or ready and title and thumbnail_url and filename %}
-
-    <section id="video_preferences" class="row justify-content-center align-items-center" style="height: 90vh">
-      <div class="col-8 solid-box shadow p-4 ps-1 pe-1" id="main_bx">
-        <div class="row align-items-center justify-content-center">
-          <img class="col-5 p-0 thumbnail" src="{{ thumbnail_url }}" alt="thumbnail" />
-
-          {% if ready == False %}
-
-          <div class="col-6 ms-4 p-0">
-            <p class="text-white fs-5 m-3 row" style="display: inline">
-              El video:
-              <strong style="color: antiquewhite">{{title}}</strong>
-              esta listo para descargarse, elige una resolución
-            </p>
-
-            <form class="m-3 row" id="resolution_form" action="/" method="POST">
-              <input id="format_tracker" name="format_tracker" type="text" hidden />
-
-              <ul class="nav nav-tabs col-12 align-items-center" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="progressive_tab" data-bs-toggle="tab"
-                          data-bs-target="#progressive_res_pane" type="button" role="tab">
-                    Video + Audio
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="video_tab" data-bs-toggle="tab" data-bs-target="#video_res_pane"
-                          type="button" role="tab">
-                    Solo Video
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="audio_tab" data-bs-toggle="tab" data-bs-target="#audio_res_pane"
-                          type="button" role="tab">
-                    Solo Audio
-                  </button>
-                </li>
-
-                <select class="form-select form-select-md ms-4 res" name="progressive_res" id="progressive_res" hidden>
-                  <option value="360p" class="fs-1">360p</option>
-                  <option value="720p">720p</option>
-                </select>
-
-                <select class="form-select form-select-md ms-4 res" name="video_res" id="video_res" hidden>
-                  {% for res in Resolutions %} {% if Resolutions[res] %}
-                  <option value="{{ res }}" class="fs-2">{{ res }}</option>
-                  {% endif %} {% endfor %}
-                </select>
-
-                <select class="form-select form-select-md ms-4 res" name="audio_res" id="audio_res" hidden>
-                  {% for abr in Vibrates %} {% if Vibrates[abr] %}
-                  <option value="{{ abr }}"">{{ abr }}</option>
-                  {% endif %} {% endfor %}
-                </select>
-              </ul>
-
-              <button class="btn col-auto m-2 bg-primary text-white">
-                Aceptar
-              </button>
-            </form>
-          </div>
-
-          {% else %}
-
-          <div class="col-5 justify-content-center align-items-center dl-msg">
-            <button id="close_btn" class="close" hidden onclick="close();">x</button>
-            <h2>
-              !!! Ya puedes descargar el video {{title}} !!!
-            </h2>
-            <span>
-                <p id="retry_msg" hidden>¿Algo ha ido mal? pulsa aquí:</p>
-                <a id="link_descarga"  href="../static/downloads/{{filename}}" download onclick="handleDownload();"> Download </a>
-            </span>
-           
-          </div>
-
-          {% endif %}
-        </div>
-      </div>
-    </section>
-    {% endif %}
-
-    <section id="como_funciona" class="row justify-content-center align-items-center" style="height: 90vh">
-      <div class="col-4" style="height: 50%">
-        <div class="row bg-gradient1 p-3 align-items-center justify-content-center" style="height: 100%">
-          <p class="fs-2 m-0">
-            Esta web utiliza python para buscar y descargar videos de YouTube
+        <div class="container-dl" id="container-dl" hidden>
+          <h2 class="ready">El video se ha descargado con éxito!!!</h2>
+          <h3>Si no se te ha descargado, pulsa aquí para
+            <a href={{ url_for('static', filename='downloads/') }} id="link-dl" download>
+              <strong>volver a descargar</strong>
+            </a>
+          </h3>
+          <p>Si el video se sigue sin descargar o el resultado no es el que esperas,
+            por favor recarga la pagina y vuelve a intentarlo 
+          </p>
+          <p>
+            Si el problema persiste ponte en contacto por GitHub para reportar el error
           </p>
         </div>
-      </div>
-
-      <div class="col-6 ps-3" style="height: 50%">
-        <div class="col-12 bg-gradient2 mb-2 overflow-hidden" style="height: 50%">
-          <div class="header p-2 shadow-sm">
-            <h2 class="m-0">Seguridad</h2>
-          </div>
-          <div class="">
-            <p class="m-2 fs-2">hola</p>
-          </div>
-        </div>
-        <div class="hstack col-12" style="height: 50%">
-          <div class="col-6 p-2 ps-0" style="height: 100%">
-            <div class="row bg-gradient3 justify-content-center align-items-center m-0" style="height: 100%">
-              <p class="m-0 fs-3">todas las opciones de descarga y mas</p>
-            </div>
-          </div>
-          <div class="col-6 p-2 pe-0" style="height: 100%">
-            <div class="row bg-gradient4 justify-content-center align-items-center m-0" style="height: 100%">
-              <p class="m-0 fs-3">la mejor estetica y calidad de usuario</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <section id="info_usuario" class="row justify-content-center align-items-center" style="height: 90vh">
-      <div class="row justify-content-center align-items-center" style="height: 65%">
-        <div class="col-3 me-1" style="height: 60%">
-          <div class="row bg-gradient1 m-0 p-2 justify-content-center" style="height: 100%">
-            <div class="col-12 p-0 pt-2">
-              <h2 class="mb-3">Video + Audio</h2>
-              <hr class="m-0" />
-            </div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur ñfahfkjsdh jkfha fsd
-              fdbiu
-            </p>
-          </div>
-        </div>
+    <section id="Uso" class="info-section">
+      <h1 class="info-title">
+        Dl YouTube es una Web para descargar videos de YouTube de forma gratis y sin anuncios.
+      </h1>
+      <hr>
+      <p class="info-text">
+        Hay tes tipos de descargas: las de <strong>Video y Audio</strong>(mp4), las de 
+        <strong>Audio</strong> y las de <strong>Video</strong>. Si lo que quieres es descargar un video
+        mp4 a resoluciones HD como 1080p... siento decepcionarte pero no va a ser posible. Por desgracia,
+        YT solo permite descargar videos en formato progressive (video y audio) a 360p o 720p como máximo.
+      </p>
 
-        <div class="col-3 ms-1 me-1" style="height: 60%">
-          <div class="row bg-gradient2 m-0 p-2 justify-content-center" style="height: 100%">
-            <div class="col-12 p-0 pt-2">
-              <h2 class="mb-3">Video</h2>
-              <hr class="m-0" />
-            </div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur ñfahfkjsdh jkfha fsd
-              fdbiu
-            </p>
-          </div>
-        </div>
-
-        <div class="col-3 ms-1" style="height: 60%">
-          <div class="row bg-gradient3 m-0 p-2 justify-content-center" style="height: 100%">
-            <div class="col-12 p-0 pt-2">
-              <h2 class="mb-3">Audio</h2>
-              <hr class="m-0" />
-            </div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur ñfahfkjsdh jkfha fsd
-              fdbiu
-            </p>
-          </div>
-        </div>
-
-        <div class="col-7 mt-3" style="height: 35%">
-          <div class="row bg-gradient3 m-0 p-2 justify-content-center" style="height: 100%">
-            <div class="col-12 p-0 pt-2">
-              <h2 class="mb-3">Una forma mas pro</h2>
-              <hr class="m-0 mt-1" />
-            </div>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur ñfahfkjsdh jkfha fsd
-              fdbiu
-            </p>
-          </div>
-        </div>
-      </div>
+      <p class="info-text">
+        Por ahora recomiendo, que si alguien quiere descargar un video a mayor resolución,
+        que se descargue el audio y el video por separado a la calidad deseada y luego utilize
+        alguna herramienta para juntarlos.
+      </p>
     </section>
-  </div>
 
-  <script src="../static/index.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
+    <section id="Seguridad" class="info-section">
+      <h1 class="info-title">Sobre la seguridad</h1>
+      <hr>
+      <p class="info-text">
+        <strong>Dl YouTube</strong> es un proyecto personal para mi portfolio como programador, 
+        podréis encontrar todo el código en GitHub, donde en lugar de viruses, seguro que encontráis 
+        código de novato, con mucho para mejorar.
+      </p>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7154517655176421"
-    crossorigin="anonymous"></script>
+      <p class="info-text">Si alguien encuentra algún error en el código o en la pagina agradecería que lo reportara en
+        GitHub para que podamos solucionarlo
+      </p>
+
+      <h2 class="info-title-cookies">Sobre las famosas Cookies</h2>
+      <hr>
+      <p class="info-text-cookies">
+        Como esta pagina no tiene una intención lucrativa, no se hacen uso de cookies de rastreo o
+        de seguimiento. Tan solo se usan las Cookies necesarias para el funcionamiento, las cuales,
+        ni son muchas, ni son peligrosas (Son cookies del estilo: Pídele al navegador que te de permiso
+        para copiar texto del portapapeles...)
+      </p>
+    </section> 
+
+  </main>
+
+  <footer>
+    <h3 class="sito-sign">Web diseñada y producida por <strong><a href="https://github.com/SitoSt" class="author">SITO</a></strong></h3>
+
+    <p class="copy-right-advise">
+      Se advierte que los contenidos multimedia descargados por Dl YouTube pueden tener
+      derechos de autor. Esta web no se hace responsable del uso ilícito de contenido robado. 
+      <strong>
+        Si vas a descargar un video con el fin de compartirlo, difundirlo o monetizarlo,
+        sera mejor que te informes bien sobre los derechos de autor de este.
+      </strong>
+      En general, si eres creador de contenido o difundidor y quieres descargar fragmentos de videos para mostrarlos,
+      te recomiendo que uses YouTube Premium para no tener problemas
+    </p>
+  </footer>
+
+  <script src={{ url_for('static', filename='scripts/index.js') }}></script>
+
 </body>
-
 </html>

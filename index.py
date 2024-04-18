@@ -1,60 +1,43 @@
-from flask import Flask, stream_template, request
-from pytube import YouTube
-from src.video_information import Get_resolutions, Get_info
+from flask import Flask, stream_template, request, send_from_directory
+import os
+import tempfile
+import logging
+from src.video_information import Get_info
 from src.download import Descargar_video
 
 app = Flask(__name__)
 
 url = ''
-title = ''
-thumbnail_url = ''
-formato = ''
-ready_to_dl = False
 
-@app.route('/', methods = ['POST', 'GET'])
+tmpdir = tempfile.TemporaryDirectory()
+path = os.path.abspath(tmpdir.name)
+
+@app.route('/', methods = ['GET'])
 def index():
-    global formato
-    res=''
-    if request.method == 'GET':
-        return stream_template('index.html')
-    else :
-        try :
-            formato = request.form['format_tracker']
-            print('--El formato elegido es: ' + formato)
-            res = request.form[f"{formato}_res"]
-            print(formato)
-        except Exception as e:
-            print(f"Tio algo ha ido mal :(((( SUERTE<33 : {str(e)}")
-
-        print('...  ...  ...  ...  ...  ...')
-        ready_to_dl, state, filename = Descargar_video(res, url, formato)
-
-        if state != 'Ok':
-            print(state)
-
-        print('')
-        print('---------------penes-------------')
-        print('')
-
-        return stream_template('index.html', title=title, thumbnail_url=thumbnail_url, ready=ready_to_dl, filename=filename);
+    return stream_template('index.html')
 
 
 @app.route('/select', methods = ['POST'])
 def Select():
-    # 1º Cogemos la url del form
     global url
-    global title
-    global thumbnail_url
-
     url = request.form['Url']
+    info = Get_info(url)
+    return info
 
-    # Invocamos las funciones para acceder al titulo, la miniatura y las resoluciones del video
-    title, thumbnail_url = Get_info(url)
-    Resolutions, Vibrates = Get_resolutions(url)
+@app.route('/download', methods = ['POST'])
+def Download():
+    form = request.form
+    descarga = Descargar_video(form['format'], form['res'], url, path)
 
-    return stream_template('index.html', title=title, thumbnail_url=thumbnail_url,  Resolutions=Resolutions,
-                            Vibrates=Vibrates, ready=ready_to_dl)
+    if descarga['result_state'] != 'Ok':
+        print('no se ha podido descargar el video')
+        return {'msg_err': 'no se ha podido descargar el video, revisa la respuesta del servidor para saver más'}
 
+    return descarga
+
+@app.route('/static/downloads/<filename>', methods = ['GET'])
+def handleDlRequest(filename):
+    return send_from_directory(path, filename)
 
 if __name__ == '__main__' :
     app.run(debug=True, port=8080)

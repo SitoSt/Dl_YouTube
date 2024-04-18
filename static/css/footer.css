@@ -1,0 +1,32 @@
+footer {
+    display: flex;
+    box-sizing: border-box;
+    position: relative;
+    height: 300px;
+    width: 100%;
+
+
+    box-shadow: inset 0px 1px 0.5rem rgba(0, 0, 0, 0.785);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.sito-sign {
+    position: absolute;
+    top: 10px;
+}
+
+.author {
+    text-decoration: none;
+    color: var(--text-accent-color);
+}
+
+.copy-right-advise {
+    position: absolute;
+    max-width: 70%;
+
+    bottom: 10px;
+
+    text-align: center;
+}
