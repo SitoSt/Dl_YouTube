@@ -1,6 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
     const form_url = document.getElementById("form-url");
-    const url_input = document.getElementById("url");
 
     const tabs = document.querySelectorAll('[role="tab"]');
     const form_preferences = document.getElementById("form-preferences");
@@ -13,20 +12,26 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-async function handleInfo(e) {
+function handleInfo(e) {
     e.preventDefault();
+
+    const loader_url = document.getElementById("loader-url");
+    loader_url.style.display = 'unset';
 
     const form = new FormData(e.target);
 
-    await fetch('/select', { method: 'POST', body: form })
+
+    fetch('/select', { method: 'POST', body: form })
         .then(response => handleResponseErr(response))
-        .then(json => displayInfo(json));
+        .then(json => displayInfo(json))
+        .finally(loader_url.style.display = 'none');
 }
 
 async function handleDownload(e) {
     e.preventDefault();
-
     const form = new FormData();
+    const loader_dl = document.getElementById("loader-dl");
+    loader_dl.style.display = 'block';
 
     if (e.target.progressive_tab.checked) {
         form.append('format', 'progressive');
@@ -43,34 +48,42 @@ async function handleDownload(e) {
 
     await fetch('/download', { method: 'POST', body: form })
         .then(response => handleResponseErr(response))
-        .then(json => {
-            const container_dl = document.getElementById("container-dl");
-            const link_dl = document.getElementById("link-dl");
-            displayInfo({ 'undisplay': true });
-
-            link_dl.href = link_dl.href + json.filename;
-            container_dl.style.display = 'flex';
-
-            var eventoClic = new MouseEvent('click', {
-                'view': window,
-                'bubbles': true,
-                'cancelable': true
-            });
-            link_dl.dispatchEvent(eventoClic);
-            // URL.revokeObjectURL(guardar.href);
-        });
+        .then(json => displayInfo(json))
 
 }
 
 function displayInfo(info) {
 
-    if (info.undisplay) {
+    if (info.filename) {
+        const loader_dl = document.getElementById("loader-dl");
+        loader_dl.style.display = 'none';
         const container_res = document.getElementById("container-res");
+        const container_dl = document.getElementById("container-dl");
         container_res.style.display = 'none';
+        container_dl.style.display = 'flex';
+
+        const link_dl = document.getElementById("link-dl");
+
+        console.log(info.filename);
+
+        link_dl.href = link_dl.href + json.filename;
+
+        var eventoClic = new MouseEvent('click', {
+            'view': window,
+            'bubbles': true,
+            'cancelable': true
+        });
+        link_dl.dispatchEvent(eventoClic);
+
     } else if (!info.msg_err) {
 
         const container_info = document.getElementById("container-info");
+        const container_dl = document.getElementById("container-dl");
+        const container_res = document.getElementById("container-res");
+
         container_info.style.display = 'flex';
+        container_dl.style.display = 'none';
+        container_res.display = 'flex'
 
         const thumbnail = document.getElementById("thumbnail");
         thumbnail.setAttribute('src', info.thumbnail);
@@ -144,6 +157,7 @@ function handleResponseErr(response) {
 }
 
 async function paste() {
+    const url_input = document.getElementById("url");
     const text = await navigator.clipboard.readText();
     url_input.value = text;
 }

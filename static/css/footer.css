@@ -23,8 +23,16 @@ footer {
 }
 
 .copy-right-advise {
-
     margin: 5px;
 
     text-align: center;
+}
+
+.legacy {
+    display: flex;
+    margin-top: 15px;
+}
+
+.legacy-item {
+    margin: 10px !important;
 }
