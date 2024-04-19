@@ -1,10 +1,11 @@
 footer {
     display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     position: relative;
-    height: 300px;
     width: 100%;
 
+    padding: 10px;
 
     box-shadow: inset 0px 1px 0.5rem rgba(0, 0, 0, 0.785);
 
@@ -13,8 +14,7 @@ footer {
 }
 
 .sito-sign {
-    position: absolute;
-    top: 10px;
+    margin-bottom: 7px;
 }
 
 .author {
@@ -23,10 +23,8 @@ footer {
 }
 
 .copy-right-advise {
-    position: absolute;
-    max-width: 70%;
 
-    bottom: 10px;
+    margin: 5px;
 
     text-align: center;
 }

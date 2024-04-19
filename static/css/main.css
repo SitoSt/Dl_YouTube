@@ -68,3 +68,10 @@ main {
         background-position: 0% 100%;
     }
 }
+
+
+@media (max-width: 500px) {
+    main {
+        padding: 20px;
+    }
+}
