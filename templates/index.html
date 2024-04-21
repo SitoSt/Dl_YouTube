@@ -5,9 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="”theme-color”" content="”dark”" />
-  <meta name="">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://127.0.0.1:5000/static/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="http://127.0.0.1:5000/static/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="http://127.0.0.1:5000/static/favicon/favicon-16x16.png">
+  <link rel="manifest" href="http://127.0.0.1:5000/static/favicon/site.webmanifest">
+  <link rel="mask-icon" href="http://127.0.0.1:5000/static/favicon/safari-pined-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="http://127.0.0.1:5000/static/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#da532c">
 
 
   <link rel="stylesheet" href={{ url_for('static', filename='css/main.css' ) }}>
@@ -27,6 +34,7 @@
   <script
           nonce="LMeNU7t1WY-mdquV05JBDA">(function () { function signalGooglefcPresent() { if (!window.frames['googlefcPresent']) { if (document.body) { const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe); } else { setTimeout(signalGooglefcPresent, 0); } } } signalGooglefcPresent(); })();</script>
 
+
   <title>Dl YouTube</title>
 </head>
 
@@ -38,21 +46,23 @@
           <a href="javascript:void(0)" class="icon-nav" onclick="displayMenu()" hidden>
             <i class="fa fa-bars fa-2x"></i>
           </a>
-          <a class="nav-item github" href="https://github.com/SitoSt/Dw_YouTube_1.0">
-            <img class="github" src="/static/img/github.svg" alt="Proyecto de GitHub" />
-            GitHub project
+          <a class="nav-link item" href="#">
+            <img src="/static/favicon/favicon.svg" alt="logo Dl YouTube" class="logo" onclick="unDisplayMenu()">
           </a>
         </div>
         
         <ul class="nav-bar" id="nav-bar">
           <li class="nav-item">
-            <a class="nav-link" href="#" onclick="unDisplayMenu()">Home</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#container-info-formats" onclick="unDisplayMenu()">Información de Uso</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#container-security" onclick="unDisplayMenu()">Seguridad</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link github" href="https://github.com/SitoSt/Dw_YouTube_1.0" onclick="unDisplayMenu()">
+              <img class="github" src="/static/img/github.svg" alt="Proyecto de GitHub" />
+              GitHub project
+            </a>
           </li>
         </ul>
 
@@ -232,6 +242,7 @@
   <footer>
     <h3 class="sito-sign">Web diseñada y producida por <strong><a href="https://github.com/SitoSt"
            class="author">SITO</a></strong></h3>
+    <br>
 
     <p class="copy-right-advise">
       Se advierte que los contenidos multimedia descargados por Dl YouTube pueden tener
@@ -241,22 +252,36 @@
         sera mejor que te informes bien sobre los derechos de autor de este.
       </strong>
     </p>
-<div id="legacy" class="legacy">
-  <a href="https://www.iubenda.com/privacy-policy/71489865"
-     class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item"
-     title="Política de Privacidad ">Política de Privacidad</a>
-  <script
-          type="text/javascript">(function (w,d)  {var loader = function ()  {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore( s,tag );};  if(w.addEventListener ){w.addEventListener("load", loader, false ) ;}else  if(w.attachEvent){w.attachEvent("onload", loader ) ;} else {w.onload = loader ;}})(window, document);</script>
+    <br>
+    <div id="atributions">
+      <p class="atribution">
+        Vectors and icons by <a href="https://twitter.com/marie_tata_?ref=svgrepo.com" target="_blank">Marie Tata</a> in CC
+        Attribution License via <a href="https://www.svgrepo.com/" target="_blank">SVG Repo</a>
+      </p>
+    </div>
+    <br>
+  <div id="legacy" class="legacy">
+    <a href="https://www.iubenda.com/privacy-policy/71489865"
+      class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item" title="Política de Privacidad">
+      Política de Privacidad
+    </a>
+    <script
+      type="text/javascript">(function (w,d)  {var loader = function ()  {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore( s,tag );};  if(w.addEventListener ){w.addEventListener("load", loader, false ) ;}else  if(w.attachEvent){w.attachEvent("onload", loader ) ;} else {w.onload = loader ;}})(window, document);</script>
 
-  <a href="https://www.iubenda.com/privacy-policy/71489865/cookie-policy"
-     class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item" title="Política de Cookies ">Política de Cookies</a>
-  <script
-          type="text/javascript">(function (w ,d) {var loader = function  () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0];  s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s, tag); }; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader); } else{w.onload = loader;}})(window, document);</script>
+    <a href="https://www.iubenda.com/privacy-policy/71489865/cookie-policy"
+      class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item" title="Política de Cookies ">
+      Política de Cookies
+    </a>
+    <script
+      type="text/javascript">(function (w ,d) {var loader = function  () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0];  s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s, tag); }; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader); } else{w.onload = loader;}})(window, document);</script>
 
-  <a href="https://www.iubenda.com/condiciones-de-uso/71489865"
-  class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item" title="Términos y Condiciones ">Términos y Condiciones</a>
-  <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
-</div>
+    <a href="https://www.iubenda.com/condiciones-de-uso/71489865"
+      class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item" title="Términos y Condiciones ">
+      Términos y Condiciones
+    </a>
+    <script 
+      type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+  </div>
 
   </footer>
 

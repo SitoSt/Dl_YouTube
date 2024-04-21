@@ -25,6 +25,11 @@ header nav {
     align-items: center;
 }
 
+.logo {
+    width: 40px;
+    height: 40px;
+}
+
 .nav-fixed {
     display: flex;
     width: fit-content;
@@ -67,21 +72,15 @@ header nav {
     color: var(--text-accent-color);
 }
 
-.nav-item.github {
-    display: flex;
+.nav-link.github {
     width: fit-content;
-    color: var(--text-color);
-    text-decoration: none;
 
     font-size: 1.21rem;
 
-    justify-content: center;
+    text-align: start;
     align-items: center;
+    justify-content: center;
     transition: color 0.3s ease;
-}
-.nav-item.github:hover {
-    color: var(--text-accent-color);
-    text-decoration: underline;
 }
 .github {
     width: 30px;
@@ -95,6 +94,7 @@ header nav {
             flex-direction: column;
             & .nav-fixed {
                 margin-bottom: 7px;
+                margin-right: 0;
             }
         }
     }
@@ -115,7 +115,7 @@ header nav {
     }
     .icon-nav {
         display: inline;
-        padding-right: 10px;
+        margin-right: 3rem;
         &  i {
             color: var(--text-primary-color);
             transition: color 0.3s ease;
@@ -127,11 +127,13 @@ header nav {
     .github {
         display: none;
     }
+    .nav-link.github{
+        display: flex;
+    }
     .nav-item {
         margin-block: 8px;
         width: 40%;
     }
-
 }
 
 @keyframes apear {

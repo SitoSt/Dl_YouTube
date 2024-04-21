@@ -16,7 +16,7 @@
     padding: 10px;
     padding-inline: 20px;
 
-    border-bottom: 1.5px solid rgba(80, 87, 84, 0.601);
+    border-bottom: 1.5px solid var(--accent-color-2);
 
     font-size: 1.7rem;
     text-align: start;
@@ -35,13 +35,13 @@
     grid-row: 2;
     grid-column: 1;
 
-    border-right: 1px solid rgba(81, 81, 81, 0.485);
+    border-right: 1px solid var(--accent-color-2);
 }
 .security-text._2 {
     grid-row: 3;
     grid-column: 1;
 
-    border-right: 1px solid rgba(81, 81, 81, 0.485);
+    border-right: 1px solid var(--accent-color-2);
 }
 
 .security-title-cookies {
@@ -54,7 +54,7 @@
     padding: 10px;
     padding-inline: 20px;
 
-    border-bottom: 1.5px solid rgba(80, 87, 84, 0.601);
+    border-bottom: 1.5px solid var(--accent-color-2);
 
     font-size: 1.7rem;
     text-align: start;
@@ -72,13 +72,13 @@
     grid-row: 2;
     grid-column: 2;
 
-    border-left: 1px solid rgba(81, 81, 81, 0.485);
+    border-left: 1px solid var(--accent-color-2);
 }
 .security-text-cookies._2 {
     grid-row: 3;
     grid-column: 2;
 
-    border-left: 1px solid rgba(81, 81, 81, 0.485);
+    border-left: 1px solid var(--accent-color-2);
 }
 
 .info-text strong {
@@ -109,7 +109,7 @@
     padding: 10px;
     padding-inline: 20px;
 
-    border-bottom: 1.5px solid rgba(80, 87, 84, 0.601);
+    border-bottom: 1.5px solid var(--accent-color-2);
 
     font-size: 1.7rem;
     text-align: start;
@@ -133,7 +133,7 @@
     grid-row: 2;
     grid-column: 1;
 
-    border-right: 1px solid rgba(81, 81, 81, 0.485);
+    border-right: 1px solid var(--accent-color-2);
 }
 .info-text.progressive-2 {
     grid-row: 3;

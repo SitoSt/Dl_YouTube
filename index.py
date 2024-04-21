@@ -6,7 +6,6 @@ from src.video_information import Get_info
 from src.download import Descargar_video
 
 app = Flask(__name__)
-
 url = ''
 
 tmpdir = tempfile.TemporaryDirectory()
@@ -15,7 +14,6 @@ path = os.path.abspath(tmpdir.name)
 @app.route('/', methods = ['GET'])
 def index():
     return stream_template('index.html')
-
 
 @app.route('/select', methods = ['POST'])
 def Select():
@@ -38,6 +36,11 @@ def Download():
 @app.route('/static/downloads/<filename>', methods = ['GET'])
 def handleDlRequest(filename):
     return send_from_directory(path, filename)
+
+@app.route('/static/favicon/<filename>')
+def favicon(filename):
+    return send_from_directory(os.path.join(app.root_path, 'static/favicon'), filename)
+
 
 if __name__ == '__main__' :
     app.run(debug=True, port=8080)

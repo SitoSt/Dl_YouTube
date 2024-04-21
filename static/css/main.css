@@ -1,13 +1,13 @@
 :root {
 
-    --primary-color: rgba(120, 120, 115, 0.7);
+    --primary-color: rgba(120, 120, 115, 0.702);
     --secondary-color: rgba(116, 102, 154, 0.4);
     --accent-color: rgba(0, 171, 106, 0.7);
     --accent-color-2: rgba(77, 84, 82, 0.7);
     --text-primary-color: rgb(155, 171, 255);
     --text-secondary-color: rgb(132, 161, 176);
     --text-color: white;
-    --text-accent-color: rgb(136, 255, 81);
+    --text-accent-color: hsl(101, 100%, 66%);
 
     background: radial-gradient(#00650a, #131c6f, #44216a);
     background-size: 250% 250%;

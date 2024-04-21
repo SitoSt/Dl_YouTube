@@ -13,6 +13,15 @@ footer {
     align-items: center;
 }
 
+a {
+    color: var(--text-accent-color);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+
 .sito-sign {
     margin-bottom: 7px;
 }
@@ -31,7 +40,6 @@ footer {
 .legacy {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 15px;
 
     justify-content: center;
     align-items: center;
@@ -39,6 +47,15 @@ footer {
 
 .legacy-item {
     margin: 10px !important;
+}
+
+.atributions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
 }
 
 @media (min-width: 500px) {
