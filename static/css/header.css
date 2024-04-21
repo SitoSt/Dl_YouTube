@@ -12,12 +12,23 @@ header {
 
     box-shadow: 0px 1px 0.5rem rgba(0, 0, 0, 0.422);
 
-    padding: 10px;
+    padding-block: 10px;
 }
 
 header nav {
     display: flex;
     width: 100%;
+    height: auto;
+    height: auto;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-fixed {
+    display: flex;
+    width: fit-content;
+    margin-right: 30px;
 
     justify-content: center;
     align-items: center;
@@ -25,7 +36,7 @@ header nav {
 
 .nav-bar {
     display: flex;
-    width: 100%;
+    width: fit-content;
     padding: 0;
     margin: 0;
 
@@ -41,11 +52,6 @@ header nav {
     margin-inline :30px;
 }
 
-.nav-item a:hover {
-    text-decoration: underline;
-    color: var(--text-accent-color);
-}
-
 .nav-link {
     display: flex;
     color: var(--text-color);
@@ -53,15 +59,86 @@ header nav {
 
     font-size: 1.21rem;
 
+    text-align: start;
+    transition: color 0.2s ease;
+}
+.nav-link:hover {
+    text-decoration: underline;
+    color: var(--text-accent-color);
+}
+
+.nav-item.github {
+    display: flex;
+    width: fit-content;
+    color: var(--text-color);
+    text-decoration: none;
+
+    font-size: 1.21rem;
+
     justify-content: center;
     align-items: center;
+    transition: color 0.3s ease;
 }
-
+.nav-item.github:hover {
+    color: var(--text-accent-color);
+    text-decoration: underline;
+}
 .github {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+@media (max-width: 600px) {
+    header {
+        padding-bottom: 0;
+        & nav {
+            flex-direction: column;
+            & .nav-fixed {
+                margin-bottom: 7px;
+            }
+        }
+    }
+    .nav-bar{
+        display: none;
+        width: 100%;
+        flex-direction: column;
+    
+        background-color: var(--secondary-color);
+
+
+        justify-content: center;
+        align-items: center;
+        animation: apear 0.4s ease-in-out;
+    }
+    .nav-bar.responsive {
+        display: flex;
+    }
+    .icon-nav {
+        display: inline;
+        padding-right: 10px;
+        &  i {
+            color: var(--text-primary-color);
+            transition: color 0.3s ease;
+        }
+        & i:hover {
+            color: var(--text-accent-color);
+        }
+    }
+    .github {
+        display: none;
+    }
+    .nav-item {
+        margin-block: 8px;
+        width: 40%;
+    }
+
 }
 
-@media (max-with: 500px) {
-
+@keyframes apear {
+    from {
+        transform: translateY(-120px);
+    }
+    to {
+        transform: translateY(0px);
+    }
 }

@@ -12,25 +12,25 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function handleInfo(e) {
-    e.preventDefault();
+const nav_bar = document.getElementById("nav-bar");
+const loader_url = document.getElementById("loader-url");
+const loader_dl = document.getElementById("loader-dl");
 
-    const loader_url = document.getElementById("loader-url");
-    loader_url.style.display = 'unset';
+async function handleInfo(e) {
+    e.preventDefault();
 
     const form = new FormData(e.target);
 
 
-    fetch('/select', { method: 'POST', body: form })
+    await fetch('/select', { method: 'POST', body: form })
         .then(response => handleResponseErr(response))
         .then(json => displayInfo(json))
-        .finally(loader_url.style.display = 'none');
 }
 
 async function handleDownload(e) {
     e.preventDefault();
+
     const form = new FormData();
-    const loader_dl = document.getElementById("loader-dl");
     loader_dl.style.display = 'block';
 
     if (e.target.progressive_tab.checked) {
@@ -46,17 +46,17 @@ async function handleDownload(e) {
         alert('No hay ningún formato de descarga seleccionado. Seleccione un formato para descargar el video');
     }
 
-    await fetch('/download', { method: 'POST', body: form })
+    fetch('/download', { method: 'POST', body: form })
         .then(response => handleResponseErr(response))
-        .then(json => displayInfo(json))
+        .then((json) => displayInfo(json))
 
 }
 
 function displayInfo(info) {
 
     if (info.filename) {
-        const loader_dl = document.getElementById("loader-dl");
-        loader_dl.style.display = 'none';
+
+        const filename = info.filename;
         const container_res = document.getElementById("container-res");
         const container_dl = document.getElementById("container-dl");
         container_res.style.display = 'none';
@@ -64,9 +64,7 @@ function displayInfo(info) {
 
         const link_dl = document.getElementById("link-dl");
 
-        console.log(info.filename);
-
-        link_dl.href = link_dl.href + json.filename;
+        link_dl.href = `/static/downloads/${filename}`;
 
         var eventoClic = new MouseEvent('click', {
             'view': window,
@@ -75,11 +73,13 @@ function displayInfo(info) {
         });
         link_dl.dispatchEvent(eventoClic);
 
+        loader_dl.style.display = 'none';
     } else if (!info.msg_err) {
 
         const container_info = document.getElementById("container-info");
         const container_dl = document.getElementById("container-dl");
         const container_res = document.getElementById("container-res");
+        const loader_url = document.getElementById("loader-url");
 
         container_info.style.display = 'flex';
         container_dl.style.display = 'none';
@@ -111,10 +111,22 @@ function displayInfo(info) {
                 audio_select.appendChild(option);
             }
         }
+        loader_url.style.display = 'none';
     } else {
         console.log('ha habido un erro, comprueba la función display info, porque los datos no le llegan');
     }
 
+}
+
+function displayMenu() {
+    if (nav_bar.className === 'nav-bar') {
+        nav_bar.className += " responsive";
+    } else {
+        nav_bar.className = 'nav-bar';
+    }
+}
+function unDisplayMenu() {
+    nav_bar.className = 'nav-bar';
 }
 
 function changeTabs(e) {
@@ -152,7 +164,7 @@ function handleResponseErr(response) {
     } else if (json.msg_err) {
         return json;
     } else {
-        return { 'msg_err': 'el servidor ha devuelto una respuesta inesperada, no se han podido obtener los datos necesarios' };
+        return { 'msg_err': 'el servidor ha devuelto una respuesta inesperada, no se han podido obtener los datos necesarios' }
     }
 }
 

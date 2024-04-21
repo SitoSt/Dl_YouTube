@@ -30,9 +30,19 @@ footer {
 
 .legacy {
     display: flex;
+    flex-wrap: wrap;
     margin-top: 15px;
+
+    justify-content: center;
+    align-items: center;
 }
 
 .legacy-item {
     margin: 10px !important;
+}
+
+@media (min-width: 500px) {
+    .copy-right-advise {
+        max-width: 60%;
+    }
 }
