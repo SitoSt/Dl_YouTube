@@ -33,14 +33,28 @@ def Download():
 
     return descarga
 
-@app.route('/static/downloads/<filename>', methods = ['GET'])
-def handleDlRequest(filename):
-    return send_from_directory(path, filename)
 
-@app.route('/static/favicon/<filename>')
+
+@app.route('/downloads/<filename>', endpoint='handle_dl_req')
+def handle_dl_req(filename):
+    if  os.path.exists(tmpdir):
+        return send_from_directory(path, filename)
+    else:
+        print('no se ha encontrado la ruta de descargas')
+        return {'err': 'no se ha encontrado la ruta de descargas'}
+
+@app.route('/static/favicon/<filename>', endpoint='favicon')
 def favicon(filename):
     return send_from_directory(os.path.join(app.root_path, 'static/favicon'), filename)
 
+@app.route('/sitemap.xml', endpoint='sitemap')
+def sitemap():
+    return send_from_directory(app.root_path, 'sitemap.xml')
 
-if __name__ == '__main__' :
-    app.run(debug=True, port=8080)
+@app.route('/robots.txt', endpoint='robots')
+def robots():
+    return send_from_directory(app.root_path, 'robots.txt')
+
+@app.route('/ads.txt', endpoint='ads')
+def ads():
+    return send_from_directory(app.root_path, 'ads.txt')

@@ -1,13 +1,4 @@
 from pytube import YouTube
-
-# ---- !!!                                          !!! ----
-# ---- !!! Hay que intentar recoger de forma global !!! ----
-# ---- !!! las variables necesarias como la url o   !!! ----
-# ---- !!! el formato                               !!! ----
-# ---- !!!                                          !!! ----
-
-#listado de todos los streams posibles
-
 Resoluciones = {
     '144p': False,
     '240p': False,
