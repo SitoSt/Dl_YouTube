@@ -1,7 +1,6 @@
 from flask import Flask, stream_template, request, send_from_directory
 import os
 import tempfile
-import logging
 from src.video_information import Get_info
 from src.download import Descargar_video
 
