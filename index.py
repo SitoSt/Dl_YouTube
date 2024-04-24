@@ -36,7 +36,7 @@ def Download():
 
 @app.route('/downloads/<filename>', endpoint='handle_dl_req')
 def handle_dl_req(filename):
-    if  os.path.exists(tmpdir):
+    if  os.path.exists(path+filename):
         return send_from_directory(path, filename)
     else:
         print('no se ha encontrado la ruta de descargas')

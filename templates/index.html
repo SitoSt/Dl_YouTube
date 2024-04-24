@@ -9,8 +9,7 @@
         content="descargar, youtube, YouTube, gratis, descargar video youtube, descargar video youtube gratis" />
   <meta name="author" content="Sito" />
   <meta name="robots" content="index" />
-  <meta name="description"
-        content="Dl YouTube te permite descargar videos de YouTube en cualquier formato y resolución que quieras" />
+  <meta name="description" content="Dl YouTube es una página para descargar videos de YouTube" />
 
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
@@ -56,7 +55,7 @@
           nonce="LMeNU7t1WY-mdquV05JBDA">(function () { function signalGooglefcPresent() { if (!window.frames['googlefcPresent']) { if (document.body) { const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe); } else { setTimeout(signalGooglefcPresent, 0); } } } signalGooglefcPresent(); })();</script>
 
 
-  <title>Dl YouTube</title>
+  <title>Dl-YouTube: Descarga videos de YouTube gratis</title>
 </head>
 
 <body>
@@ -64,23 +63,23 @@
     <header>
       <nav>
         <div class="nav-fixed">
-          <a class="icon-nav" onclick="displayMenu()" hidden>
+          <a class="icon-nav" onclick="displayMenu()" rel="nofollow" hidden>
             <i class="fa fa-bars fa-2x"></i>
           </a>
-          <a class="nav-link item" href="#">
+          <a class="nav-link item" href="/" rel="nofollow">
             <img src="/static/favicon/favicon.svg" alt="logo Dl YouTube" class="logo" onclick="unDisplayMenu()">
           </a>
         </div>
         
         <ul class="nav-bar" id="nav-bar">
           <li class="nav-item">
-            <a class="nav-link" href="#container-info-formats" onclick="unDisplayMenu()">Información de Uso</a>
+            <a class="nav-link" href="#container-info-formats" onclick="unDisplayMenu()" rel="nofollow">Información de Uso</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#container-security" onclick="unDisplayMenu()">Seguridad</a>
+            <a class="nav-link" href="#container-security" onclick="unDisplayMenu()" rel="nofollow">Seguridad</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link github" href="https://github.com/SitoSt/Dw_YouTube_1.0" onclick="unDisplayMenu()">
+            <a class="nav-link github" href="https://github.com/SitoSt/Dw_YouTube_1.0" onclick="unDisplayMenu()" rel="external">
               <img class="github" src="/static/img/github.svg" alt="Proyecto de GitHub" />
               GitHub project
             </a>
@@ -177,18 +176,21 @@
 
           <div class="container-dl" id="container-dl" hidden>
             <h2 class="ready">El video se ha descargado con éxito!!!</h2>
-            <h3>Si no se te ha descargado, pulsa aquí para
-              <a href={{ url_for('static', filename='downloads/' ) }} id="link-dl" download>
+            <p class="dl-advise">
+              Si no se te ha descargado, pulsa aquí para
+              <a href="downloads/" id="link-dl" rel="nofollow" download>
                 <strong>volver a descargar</strong>
               </a>
-              </h3>
-              <p>Si el video se sigue sin descargar o el resultado no es el que esperas,
-                por favor recarga la página y vuelve a intentarlo
-              </p>
-              <p>
-                Si el problema persiste ponte en contacto por GitHub para reportar el error
-              </p>
-              </div>
+            </p>
+            
+            <p>
+              Si el video se sigue sin descargar o el resultado no es el que esperas,
+              por favor recarga la página y vuelve a intentarlo
+            </p>
+            <p>
+              Si el problema persiste ponte en contacto por GitHub para reportar el error
+            </p>
+            </div>
         </div>
       </div>
     </section>
@@ -228,9 +230,9 @@
         que soporte el video y te dará a elegir entre todas ellas. Incluso puedes
         descargar el video en formatos de alta resolución
       </p>
-      </div>
+    </div>
 
-    <div id="container-security" class="info-section">
+    <section id="container-security" class="info-section">
       <h1 class="security-title">Sobre Seguridad</h1>
       <p class="security-text _1">
         <strong>Dl YouTube</strong> es un proyecto personal para mi portfolio como programador,
@@ -248,8 +250,8 @@
       <p class="security-text-cookies _1">
         Las únicas cookies de esta pagina son para los anuncios. Estas están gestionadas
         por google y siguen las leyes de regulación de la unión europea. Si quieres leer
-        más sobre la política de cookies de esta pagina mira nuestra <a href="#legacy">política de privacidad</a>
-        y la <a href="#legacy">política de cookies</a>
+        más sobre la política de cookies de esta pagina mira nuestra <a href="#legacy" rel="nofollow">política de privacidad</a>
+        y la <a href="#legacy" rel="nofollow">política de cookies</a>
         </p>
         <p class="security-text-cookies _2">
           Esta web es gratuita y lo seguirá siendo. Agradecería que no se bloqueen los anuncios
@@ -261,7 +263,8 @@
   </main>
 
   <footer>
-    <h3 class="sito-sign">Web diseñada y producida por <strong><a href="https://github.com/SitoSt"
+    <h3 class="sito-sign">Web diseñada y producida por <strong><a href="https://github.com/SitoSt" rel="author"
+           target="_blank"
            class="author">SITO</a></strong></h3>
     <br>
 
@@ -283,7 +286,7 @@
     <br>
   <div id="legacy" class="legacy">
     <a href="https://www.iubenda.com/privacy-policy/71489865"
-      class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item" title="Política de Privacidad">
+      class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item" title="Política de Privacidad" >
       Política de Privacidad
     </a>
     <script

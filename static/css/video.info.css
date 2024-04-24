@@ -1,20 +1,16 @@
-.container-info {
-    display: none;
-}
-
 .container-res form {
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     align-items: center;
     justify-content: center;
 }
 
-
 .format-tabs {
     display: flex;
     position: relative;
-    width: fit-content;
+    width: 70%;
     padding: 10px;
 
     background-color: var(--primary-color);
@@ -22,14 +18,17 @@
     -webkit-backdrop-filter: blur(2rem);
 
     border-radius: 99px;
+
+    justify-content: space-between;
+    align-items: center;
 }
 
 [role='tab'] {
     position: relative;
     z-index: 2;
     display: flex;
-    height: 45px;
-    width: 150px;
+    height: 40px;
+    width: 30%;
 
     border-radius: 99px;
 
@@ -47,7 +46,7 @@
 input[type="radio"][id="progressive-tab"] {
     &:checked {
         &~.glider {
-            transform: translateX(0);
+            transform: translateX(0%);
         }
 
         &+label {
@@ -59,7 +58,7 @@ input[type="radio"][id="progressive-tab"] {
 input[type="radio"][id="audio-tab"] {
     &:checked {
         &~.glider {
-            transform: translateX(100%);
+            transform: translateX(110%);
         }
 
         &+label {
@@ -71,7 +70,7 @@ input[type="radio"][id="audio-tab"] {
 input[type="radio"][id="video-tab"] {
     &:checked {
         &~.glider {
-            transform: translateX(200%);
+            transform: translateX(225%);
         }
 
         &+label {
@@ -84,8 +83,8 @@ input[type="radio"][id="video-tab"] {
 .glider {
     position: absolute;
     display: flex;
-    height: 45px;
-    width: 150px;
+    height: 40px;
+    width: 30%;
     background-color: var(--accent-color);
     z-index: 1;
     border-radius: 99px;
@@ -158,4 +157,10 @@ input[type="radio"][id="video-tab"] {
     color: var(--text-color);
     font-size: 1.5rem;
     text-align: center;
+}
+
+@media (max-width: 700px) {
+    .format-tabs {
+        width: 100%;
+    }
 }

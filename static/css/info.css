@@ -2,13 +2,12 @@
     display: grid;
     width: 80%;
     margin-block: 4rem;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto auto;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(3, auto);
 }
 
 .security-title {
     color: var(--text-primary-color);
-
     grid-row: 1;
     grid-column: 1;
 
@@ -95,8 +94,8 @@
     display: grid;
     width: 80%;
     margin-block: 4rem;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto auto;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
 
     justify-content: center;
     align-items: start;
@@ -182,8 +181,8 @@
 @media (max-width: 1150px) {
     #container-info-formats {
         width: 100%;
-        grid-column: repeat(1, 1fr);
-        grid-row: repeat(9, 1fr)
+        grid-template-columns: repeat(1, auto);
+        grid-template-rows: repeat(9, auto)
     }
 
     .info-title.progressive {
@@ -241,8 +240,8 @@
 
     #container-security {
         width:100%;
-        grid-column: repeat(1, 1fr);
-        grid-row: repeat(6, 1fr);
+        grid-template-columns: repeat(1, auto);
+        grid-template-rows: repeat(6, auto);
     }
 
     .security-title {

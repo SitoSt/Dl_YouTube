@@ -96,10 +96,9 @@
 }
 
 .container-info {
-    display: flex;
+    display: none;
     width: 100%;
     flex-direction: column;
-
 
     padding-top: 30px;
 
@@ -108,10 +107,10 @@
 }
 
 .thumbnail {
-    width: 400px;
+    width: 100%;
     height: auto;
 
-    border-radius: 20px;
+    border-radius: 25px;
 }
 
 .container-user-info {
@@ -127,8 +126,8 @@
 }
 
 #title {
-    max-width: 570px;
-    min-width: 440px;
+    max-width: 100%;
+    box-sizing: border-box;
 
     padding: 20px;
     margin-bottom: 2rem;
@@ -149,7 +148,7 @@
 
 .container-res {
     display: flex;
-    width: fit-content;
+    width: 100%;
     box-sizing: border-box;
 
 
@@ -172,7 +171,7 @@
     text-align: center;
     font-size: 1.6;
 }
-.container-dl h3 {
+.container-dl.dl-advise {
     font-size: 1.1rem;
     color: var(--text-color);
 }
@@ -189,6 +188,7 @@
     #url {
         width: 70%;
     }
+
 }
 
 @media (min-width: 850px) {
