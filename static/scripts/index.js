@@ -49,7 +49,6 @@ async function handleDownload(e) {
     fetch('/download', { method: 'POST', body: form })
         .then(response => handleResponseErr(response))
         .then((json) => displayInfo(json))
-
 }
 
 function displayInfo(info) {
@@ -64,7 +63,7 @@ function displayInfo(info) {
 
         const link_dl = document.getElementById("link-dl");
 
-        link_dl.href = `/static/downloads/${filename}`;
+        link_dl.href = `downloads/${filename}`;
 
         var eventoClic = new MouseEvent('click', {
             'view': window,
@@ -83,7 +82,7 @@ function displayInfo(info) {
 
         container_info.style.display = 'flex';
         container_dl.style.display = 'none';
-        container_res.display = 'flex'
+        container_res.style.display = 'flex'
 
         const thumbnail = document.getElementById("thumbnail");
         thumbnail.setAttribute('src', info.thumbnail);
@@ -113,7 +112,7 @@ function displayInfo(info) {
         }
         loader_url.style.display = 'none';
     } else {
-        console.log('ha habido un erro, comprueba la función display info, porque los datos no le llegan');
+        alert('ha habido un erro, comprueba la función display info, porque los datos no le llegan', info);
     }
 
 }
@@ -125,9 +124,7 @@ function displayMenu() {
         nav_bar.className = 'nav-bar';
     }
 }
-function unDisplayMenu() {
-    nav_bar.className = 'nav-bar';
-}
+
 
 function changeTabs(e) {
     const target = e.target;

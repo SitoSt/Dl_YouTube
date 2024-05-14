@@ -16,9 +16,11 @@ def index():
 
 @app.route('/select', methods = ['POST'])
 def Select():
+    print(f'Información de video solicitada')
     global url
     url = request.form['Url']
     info = Get_info(url)
+
     return info
 
 @app.route('/download', methods = ['POST'])
@@ -36,7 +38,7 @@ def Download():
 
 @app.route('/downloads/<filename>', endpoint='handle_dl_req')
 def handle_dl_req(filename):
-    if  os.path.exists(path+filename):
+    if  os.path.exists(f'{path}/' + filename):
         return send_from_directory(path, filename)
     else:
         print('no se ha encontrado la ruta de descargas')
@@ -56,4 +58,4 @@ def robots():
 
 @app.route('/ads.txt', endpoint='ads')
 def ads():
-    return send_from_directory(app.root_path, 'ads.txt')
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'ads.txt')
