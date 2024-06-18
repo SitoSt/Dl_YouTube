@@ -59,6 +59,3 @@ def robots():
 @app.route('/ads.txt', endpoint='ads')
 def ads():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'ads.txt')
-
-if __name__ == "__main__":
-    app.run(debug=True, port=5000)
