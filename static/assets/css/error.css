@@ -1,0 +1,42 @@
+#err-notification {
+    position: fixed;
+    max-width: 50%;
+    padding: 10px;
+
+    border-radius: 15px;
+
+    background-color: rgba(255, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+
+    top: 80px;
+    right: 20px;
+}
+
+.err-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#err-msg{
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: start;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+
+    color: whitesmoke;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: all 0.2s ease-in;
+
+}
+
+.close-btn:hover {
+    color: rgb(228, 184, 202);
+    transform: scale(1.4);
+}

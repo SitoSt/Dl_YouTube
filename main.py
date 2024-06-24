@@ -1,4 +1,4 @@
-from flask import Flask, stream_template, request, send_from_directory
+from flask import Flask, stream_template, request, send_from_directory, make_response
 import os
 import tempfile
 from src.video_information import Get_info
@@ -10,18 +10,28 @@ url = ''
 tmpdir = tempfile.TemporaryDirectory()
 path = os.path.abspath(tmpdir.name)
 
+
 @app.route('/', methods = ['GET'])
 def index():
     return stream_template('index.html')
 
-@app.route('/select', methods = ['POST'])
-def Select():
-    print(f'Información de video solicitada')
+@app.route('/get-video-info', methods = ['POST'])
+def Get_video_info():
     global url
-    url = request.form['Url']
-    info = Get_info(url)
 
-    return info
+    print(f'Información de video solicitada')
+    url = request.form.get('url')
+    print(url)
+
+    if url:
+        print('esta es la url: %s' % url)
+        info = Get_info(url)
+        
+        return info
+    else:
+        print(f'Petición no valida: no se puede acceder a la url del video')
+        response = make_response('', 400)
+        return response
 
 @app.route('/download', methods = ['POST'])
 def Download():

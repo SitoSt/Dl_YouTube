@@ -11,6 +11,7 @@
     gtag('config', 'G-1P3WFPY7DZ');
   </script>
 
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="”theme-color”" content="”dark”" />
@@ -30,30 +31,31 @@
           'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-KFW5XVH3');</script>
   <!-- End Google Tag Manager -->
-  
+
   <link rel="canonical" href="https://dl-youtube.onrender.com" />
-  
-  <link rel="apple-touch-icon" sizes="180x180" href="http://127.0.0.1:5000/static/favicon/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="http://127.0.0.1:5000/static/favicon/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="http://127.0.0.1:5000/static/favicon/favicon-16x16.png" />
-  <link rel="manifest" href="http://127.0.0.1:5000/static/favicon/site.webmanifest" />
-  <link rel="mask-icon" href="http://127.0.0.1:5000/static/favicon/safari-pined-tab.svg" color="#5bbad5" />
-  <link rel="shortcut icon" href="http://127.0.0.1:5000/static/favicon/favicon.ico" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="static/assets/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="static/assets/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="static/assets/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="static/assets/favicon/site.webmanifest" />
+  <link rel="mask-icon" href="static/assets/favicon/safari-pined-tab.svg" color="#5bbad5" />
+  <link rel="shortcut icon" href="static/assets/favicon/favicon.ico" />
   <meta name="msapplication-TileColor" content="#da532c" />
 
 
-  <link rel="stylesheet" href={{ url_for('static', filename='css/main.css' ) }} />
-  <link rel="stylesheet" href={{ url_for('static', filename='css/video.css' ) }} />
-  <link rel="stylesheet" href={{ url_for('static', filename='css/video.info.css' ) }} />
-  <link rel="stylesheet" href={{ url_for('static', filename='css/header.css' ) }} />
-  <link rel="stylesheet" href={{ url_for('static', filename='css/info.css' ) }} />
-  <link rel="stylesheet" href={{ url_for('static', filename='css/footer.css' ) }} />
-  <link rel="stylesheet" href={{ url_for('static', filename='css/loader.css' ) }} />
+  <link rel="stylesheet" href={{ url_for('static', filename='assets/css/main.css' ) }} />
+  <link rel="stylesheet" href={{ url_for('static', filename='assets/css/video.css' ) }} />
+  <link rel="stylesheet" href={{ url_for('static', filename='assets/css/video.info.css' ) }} />
+  <link rel="stylesheet" href={{ url_for('static', filename='assets/css/header.css' ) }} />
+  <link rel="stylesheet" href={{ url_for('static', filename='assets/css/info.css' ) }} />
+  <link rel="stylesheet" href={{ url_for('static', filename='assets/css/footer.css' ) }} />
+  <link rel="stylesheet" href={{ url_for('static', filename='assets/css/loader.css' ) }} />
+  <link rel="stylesheet" href={{ url_for('static', filename='assets/css/error.css' )}}>
 
   <meta name="google-site-verification" content="-Vvna09NwYShbmriYRjURWaNlSL6oBgLgaVHiN5eU8I" />
-  
+
   <meta name="google-adsense-account" content="ca-pub-7154517655176421" />
-  
+
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7154517655176421"
           crossorigin="anonymous"></script>
   <script async src="https://fundingchoicesmessages.google.com/i/pub-7154517655176421?ers=1"
@@ -70,24 +72,26 @@
     <header>
       <nav>
         <div class="nav-fixed">
-          <a class="icon-nav" onclick="displayMenu()" rel="nofollow" hidden>
-            <i class="fa fa-bars fa-2x"></i>
+          <a class="icon-nav" onclick="displayMenu()" rel="nofollow">
+            <img src='static/assets/img/menu.svg' alt="">
           </a>
           <a class="nav-link item" href="/" rel="nofollow">
-            <img src="/static/favicon/favicon.svg" alt="logo Dl YouTube" class="logo" onclick="unDisplayMenu()">
+            <img src="/static/assets/favicon/favicon.svg" alt="logo Dl YouTube" class="logo" onclick="unDisplayMenu()">
           </a>
         </div>
-        
+
         <ul class="nav-bar" id="nav-bar">
           <li class="nav-item">
-            <a class="nav-link" href="#container-info-formats" onclick="unDisplayMenu()" rel="nofollow">Información de Uso</a>
+            <a class="nav-link" href="#container-info-formats" onclick="unDisplayMenu()" rel="nofollow">Información de
+              Uso</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#container-security" onclick="unDisplayMenu()" rel="nofollow">Seguridad</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link github" href="https://github.com/SitoSt/Dw_YouTube_1.0" onclick="unDisplayMenu()" rel="external">
-              <img class="github" src="/static/img/github.svg" alt="Proyecto de GitHub" />
+            <a class="nav-link github" href="https://github.com/SitoSt/Dw_YouTube_1.0" onclick="unDisplayMenu()"
+               rel="external">
+              <img class="github" src="/static/assets/img/github.svg" alt="Proyecto de GitHub" />
               GitHub project
             </a>
           </li>
@@ -96,21 +100,31 @@
       </nav>
     </header>
 
+    <div id="err-notification" hidden>
+      <div class="err-container">
+        <button class="close-btn">X</button>
+        <p id="err-msg"></p>
+
+      </div>
+    </div>
+
     <section id="video">
       <div class="container-url">
         <form id="form-url">
           <div class="total-input">
-            <input id="url" class="shadow" name="Url" type="url" ria-describedby="paste" required="true"
+            <input id="url" class="shadow" name="url" type="url" ria-describedby="paste" required="true"
                    placeholder="Introduzca la url de un video" />
             <label id="paste" for="url">
               <button type="button" onclick="paste();">
-                <img src="/static/img/clipboard.svg" alt="Pegas del portapapeles" />
+                <img src="/static/assets/img/clipboard.svg" alt="Pegas del portapapeles" />
               </button>
             </label>
           </div>
+          <div class="bottom">
+            <button type="submit" id="btn_url" class="btn shadow">Buscar</button>
+            <span id="loader-url" class="loader" hidden></span>
+          </div>
 
-          <button type="submit" id="btn_url" class="btn shadow">Buscar</button>
-          <span id="loader-url" class="loader"></span>
         </form>
       </div>
 
@@ -119,67 +133,66 @@
         <img class="thumbnail shadow" id="thumbnail" src="" alt="thumbnail" />
         <div class="container-user-info">
 
-          <h1 id="title" class="shadow"></h1>
+          <h1 id="title"></h1>
 
           <div class="container-res" id="container-res">
             <form id="form-preferences">
-              <div class="format-tabs shadow" role="tablist" aria-label="Format Tabs" name="format_tabs">
-
-                <input id="progressive-tab" name="progressive_tab" type="radio" aria-labelledby="progressive-lbl" hidden checked />
-                <label id="progressive-lbl" class="format-tab" role="tab" aria-selected="true" tabindex="0"
-                       aria-controls="progressive-select" for="progressive-tab">
-
-                  Video y Audio
+              <div class="format-options" aria-label="Opciones de descarga">
+                <div class="group">
+                  <input type="radio" id="progressive-format" class="format-radio" name="format"
+                         aria-labelledby="progressive-lbl" value="progressive" checked />
+                  <label id="progressive-lbl" class="format-lbl" aria-controls="progressive-select"
+                         for="progressive-format">
+                    Video y Audio
                   </label>
+                </div>
 
+                <div class="group">
 
-                <input type="radio" id="audio-tab" name="audio_tab" aria-labelledby="audio-lbl" hidden />
-                <label id="audio-lbl" class="format-tab" role="tab" aria-selected="false" tabindex="0" aria-controls="audio-select"
-                       for="audio-tab">
-
-                  Solo Audio
-                </label>
-
-
-                <input type="radio" id="video-tab" name="video_tab" aria-labelledby="video-lbl" hidden />
-                <label id="video-lbl" class="format-tab" role="tab" aria-selected="false" tabindex="0" aria-controls="video-select"
-                       for="video-tab">
-
-                  Solo Video
+                  <input type="radio" id="audio-format" class="format-radio" name="format"
+                         aria-labelledby="audio-lbl" value="audio"/>
+                  <label id="audio-lbl" class="format-lbl" aria-controls="audio-select" for="audio-format">
+                    Solo Audio
                   </label>
-
-
-                <span class="glider"></span>
                 </div>
 
-              <div class="res-select" id="progressive-select" role="tabpanel" tabindex="0" aria-labelledby="progressive-tab">
-
-                <select name="progressive_res" class="res-selection shadow">
-
-                  <option value="360p" class="res">360p</option>
-                  <option value="720p" class="res">720p</option>
-                  </select>
-                  <i></i>
-                  </div>
-
-              <div class="res-select" id="audio-select" role="tabpanel" tabindex="0" aria-labelledby="audio-tab" hidden>
-
-                <select name="audio_res" class="res-selection shadow">
-                </select>
-                <i></i>
+                <div class="group">
+                  <input type="radio" id="video-format" class="format-radio" name="format"
+                         aria-labelledby="video-lbl" value="video" />
+                  <label id="video-lbl" class="format-lbl" aria-controls="video-select" for="video-format">
+                    Solo Video
+                  </label>
                 </div>
 
-              <div class="res-select" id="video-select" role="tabpanel" tabindex="0" aria-labelledby="video-tab" hidden>
-
-                <select name="video_res" class="res-selection shadow">
-                </select>
-                <i></i>
-                </div>
-
-              <button type="submit" id="btn_dl" class="btn2 shadow">Descargar</button>
-              <span id="loader-dl" class="loader" hidden></span>
-              </form>
               </div>
+
+              <div class="form-body">
+
+                <div class="res-select">
+
+                  <select id="progressive-select" name="progressive_res" class="res-selection shadow">
+
+                    <option value="360p" class="res">360p</option>
+                    <option value="720p" class="res">720p</option>
+                  </select>
+
+                  <select id="audio-select" name="audio_res" class="res-selection shadow" hidden> 
+                  </select>
+
+                  <select id="video-select" name="video_res" class="res-selection shadow" hidden>
+                  </select>
+
+                </div>
+
+
+                <button type="submit" id="btn_dl" class="btn2 shadow">Descargar</button>
+                <span id="loader-dl" class="loader" hidden></span>
+
+              </div>
+
+
+            </form>
+          </div>
 
           <div class="container-dl" id="container-dl" hidden>
             <h2 class="ready">El video se ha descargado con éxito!!!</h2>
@@ -189,7 +202,7 @@
                 <strong>volver a descargar</strong>
               </a>
             </p>
-            
+
             <p>
               Si el video se sigue sin descargar o el resultado no es el que esperas,
               por favor recarga la página y vuelve a intentarlo
@@ -197,13 +210,13 @@
             <p>
               Si el problema persiste ponte en contacto por GitHub para reportar el error
             </p>
-            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <div id="container-info-formats" class="info-section">
-    
+    <section id="container-info-formats" class="info-section">
+
       <h1 class="info-title progressive">\-Video y Audio</h1>
       <p class="info-text progressive-1">
         Este es el único formato para descargar archivos <strong>.mp4</strong>,
@@ -215,7 +228,7 @@
         el video y el audio a parte a la calidad que quieras y luego juntarlo
         en algún programa
       </p>
-    
+
       <h1 class="info-title audio">\-Solo Audio</h1>
       <p class="info-text audio-1">
         Asi podrás descargar archivos de audio de tus canciones favoritas o
@@ -226,7 +239,7 @@
         y mas. Dl YouTube buscará todas las calidades de audio que soporte el video
         y te dará a elegir entre ellas
       </p>
-      
+
       <h1 class="info-title video">\-Solo Video</h1>
       <p class="info-text video-1">
         Con esto puedes descargar los videos a secas de YouTube (sin audio claro).
@@ -237,7 +250,8 @@
         que soporte el video y te dará a elegir entre todas ellas. Incluso puedes
         descargar el video en formatos de alta resolución
       </p>
-    </div>
+    </section>
+
 
     <section id="container-security" class="info-section">
       <h1 class="security-title">Sobre Seguridad</h1>
@@ -253,17 +267,18 @@
       </p>
 
       <h1 class="security-title-cookies">Las famosas Cookies</h1>
-      
+
       <p class="security-text-cookies _1">
         Las únicas cookies de esta pagina son para los anuncios. Estas están gestionadas
         por google y siguen las leyes de regulación de la unión europea. Si quieres leer
-        más sobre la política de cookies de esta pagina mira nuestra <a href="#legacy" rel="nofollow">política de privacidad</a>
+        más sobre la política de cookies de esta pagina mira nuestra <a href="#legacy" rel="nofollow">política de
+          privacidad</a>
         y la <a href="#legacy" rel="nofollow">política de cookies</a>
-        </p>
-        <p class="security-text-cookies _2">
-          Esta web es gratuita y lo seguirá siendo. Agradecería que no se bloqueen los anuncios
-          ya que, al fin y al cabo, trabajar manteniendo y mejorando la web es un gran gasto de tiempo
-          que a penas me retorna beneficios
+      </p>
+      <p class="security-text-cookies _2">
+        Esta web es gratuita y lo seguirá siendo. Agradecería que no se bloqueen los anuncios
+        ya que, al fin y al cabo, trabajar manteniendo y mejorando la web es un gran gasto de tiempo
+        que a penas me retorna beneficios
       </p>
     </section>
 
@@ -271,8 +286,7 @@
 
   <footer>
     <h3 class="sito-sign">Web diseñada y producida por <strong><a href="https://github.com/SitoSt" rel="author"
-           target="_blank"
-           class="author">SITO</a></strong></h3>
+           target="_blank" class="author">SITO</a></strong></h3>
     <br>
 
     <p class="copy-right-advise">
@@ -286,37 +300,40 @@
     <br>
     <div id="atributions">
       <p class="atribution">
-        Vectors and icons by <a href="https://twitter.com/marie_tata_?ref=svgrepo.com" target="_blank">Marie Tata</a> in CC
+        Vectors and icons by <a href="https://twitter.com/marie_tata_?ref=svgrepo.com" target="_blank">Marie Tata</a> in
+        CC
         Attribution License via <a href="https://www.svgrepo.com/" target="_blank">SVG Repo</a>
       </p>
     </div>
     <br>
-  <div id="legacy" class="legacy">
-    <a href="https://www.iubenda.com/privacy-policy/71489865"
-      class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item" title="Política de Privacidad" >
-      Política de Privacidad
-    </a>
-    <script
-      type="text/javascript">(function (w,d)  {var loader = function ()  {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore( s,tag );};  if(w.addEventListener ){w.addEventListener("load", loader, false ) ;}else  if(w.attachEvent){w.attachEvent("onload", loader ) ;} else {w.onload = loader ;}})(window, document);</script>
+    <div id="legacy" class="legacy">
+      <a href="https://www.iubenda.com/privacy-policy/71489865"
+         class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item"
+         title="Política de Privacidad">
+        Política de Privacidad
+      </a>
+      <script
+              type="text/javascript">(function (w, d) { var loader = function () { var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s, tag); }; if (w.addEventListener) { w.addEventListener("load", loader, false); } else if (w.attachEvent) { w.attachEvent("onload", loader); } else { w.onload = loader; } })(window, document);</script>
 
-    <a href="https://www.iubenda.com/privacy-policy/71489865/cookie-policy"
-      class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item" title="Política de Cookies ">
-      Política de Cookies
-    </a>
-    <script
-      type="text/javascript">(function (w ,d) {var loader = function  () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0];  s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s, tag); }; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader); } else{w.onload = loader;}})(window, document);</script>
+      <a href="https://www.iubenda.com/privacy-policy/71489865/cookie-policy"
+         class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item" title="Política de Cookies ">
+        Política de Cookies
+      </a>
+      <script
+              type="text/javascript">(function (w, d) { var loader = function () { var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s, tag); }; if (w.addEventListener) { w.addEventListener("load", loader, false); } else if (w.attachEvent) { w.attachEvent("onload", loader); } else { w.onload = loader; } })(window, document);</script>
 
-    <a href="https://www.iubenda.com/condiciones-de-uso/71489865"
-      class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item" title="Términos y Condiciones ">
-      Términos y Condiciones
-    </a>
-    <script 
-      type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
-  </div>
+      <a href="https://www.iubenda.com/condiciones-de-uso/71489865"
+         class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe legacy-item"
+         title="Términos y Condiciones ">
+        Términos y Condiciones
+      </a>
+      <script
+              type="text/javascript">(function (w, d) { var loader = function () { var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s, tag); }; if (w.addEventListener) { w.addEventListener("load", loader, false); } else if (w.attachEvent) { w.attachEvent("onload", loader); } else { w.onload = loader; } })(window, document);</script>
+    </div>
 
   </footer>
 
-  <script src={{ url_for('static', filename='scripts/index.js' ) }}></script>
+  <script src={{ url_for('static', filename='scripts/main.js' ) }}></script>
 
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFW5XVH3" height="0" width="0"

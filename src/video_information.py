@@ -40,7 +40,6 @@ def Get_info(url):
         }
 
         return video_info
-    
     except Exception as e:
         print(f'No se ha podido acceder a los datos del video!! {e}')
         return {'err_msg': 'no se ha podido acceder al video'}

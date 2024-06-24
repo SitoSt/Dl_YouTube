@@ -79,6 +79,15 @@
     border-bottom-right-radius: 10px;
 }
 
+.bottom {
+    position: relative;
+    display: flex;
+    gap: 10px;
+
+    justify-content: center;
+    align-items: center;
+}
+
 .btn {
     height: 36px;
     margin-top: 20px;
@@ -132,16 +141,9 @@
     padding: 20px;
     margin-bottom: 2rem;
 
-    background-color: transparent;
-    backdrop-filter: blur(2rem);
-    -webkit-backdrop-filter: blur(2rem);
-
-    border: 1px solid var(--secondary-color);
-    border-radius: 25px;
-
     color: var(--text-primary-color);
     font-size: 2rem;
-    text-align: center;
+    text-align: start;
 
 
 }
